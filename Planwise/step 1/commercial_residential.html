@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Type Selection</title>
+    <link rel="stylesheet" href="commercial_residential.css">
+</head>
+<body>
+    <div class="container">
+        <h1>What type of building are you creating?</h1>
+        
+        <div class="card-container">
+            <div class="card" id="residential">
+                <div class="card-image">
+                    <img src="images/residential.jpg"  alt="Residential Building">
+                </div>
+                <div class="card-title">Residential</div>
+            </div>
+            
+            <div class="card" id="commercial">
+                <div class="card-image">
+                    <img src="images/commercial.jpg" alt="Commercial Building">
+                </div>
+                <div class="card-title">Commercial</div>
+            </div>
+        </div>
+
+        <div id="next-step" class="hidden">
+            <h2>You selected: <span id="selected-type"></span></h2>
+            <button id="continue-btn">Continue to Planning</button>
+        </div>
+    </div>
+
+    <script src="commercial_residential.js"></script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanWise</title>
+    <link rel="stylesheet" href="try.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="logo-text">PlanWise</div>
+                <div class="plan-badge">Free</div>
+            </div>
+            
+            <div class="user-profile">
+                <div class="avatar">F</div>
+                <div class="user-info">
+                    <div class="user-name">My Files</div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+            
+            <button class="new-btn">
+                <i class="fas fa-plus"></i>
+                <span>New</span>
+            </button>
+            
+            <div class="nav-menu">
+                <div class="nav-item active">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Recent</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-star"></i>
+                    <span>Starred</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-th-large"></i>
+                    <span>Templates</span>
+                </div>
+                <div class="nav-item projects">
+                    <i class="fas fa-folder"></i>
+                    <span>Projects</span>
+                    <i class="fas fa-plus add-project"></i>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-trash"></i>
+                    <span>Recycle Bin</span>
+                </div>
+            </div>
+            
+            <div class="upgrade-info">
+                <div class="plan-name">PlanWise Premium</div>
+                <div class="billing-info">Billed annually</div>
+                <div class="discount-badge">Save 48%</div>
+                <button class="upgrade-btn">
+                    <i class="fas fa-crown"></i>
+                    <span>Upgrade</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Search and user controls -->
+            <div class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search for files...">
+                </div>
+                <div class="user-controls">
+                    <button class="icon-btn">
+                        <i class="fas fa-crown"></i>
+                        <span>Upgrade</span>
+                    </button>
+                    <button class="icon-btn">
+                        <i class="fas fa-history"></i>
+                    </button>
+                    <button class="icon-btn">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <div class="user-avatar">M</div>
+                </div>
+            </div>
+            
+            <!-- Quick action templates -->
+            <div class="templates-section">
+                <div class="template-card">
+                    <div class="template-icon">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <div class="template-info">
+                        <h3>Site Analysis</h3>
+                        <p>Generate site reports instantly.</p>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="template-info">
+                        <h3>Bubble Diagram</h3>
+                        <p>Map out spatial flow easily.</p>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-icon">
+                        <i class="fas fa-object-group"></i>
+                    </div>
+                    <div class="template-info">
+                        <h3>Zoning</h3>
+                        <p>Define functional spaces quickly.</p>
+                    </div>
+                </div>
+                
+                <div class="template-card">
+                    <div class="template-icon">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="template-info">
+                        <h3>Matrix Diagram</h3>
+                        <p>Visualize relationships effectively.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent documents section -->
+            <div class="recent-section">
+                <div class="section-header">
+                    <h2>Recent Documents</h2>
+                    <div class="view-controls">
+                        <div class="dropdown">
+                            <span>All</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="dropdown">
+                            <span>All files</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <button class="view-btn active">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="files-grid">
+                    <!-- Files will be dynamically added here -->
+                    <div id="file-container" class="files-grid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Template for file preview modal -->
+    <div id="fileModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">File Details</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="file-name">File Name:</label>
+                    <input type="text" id="file-name">
+                </div>
+                <div class="form-group">
+                    <label for="file-content">Content:</label>
+                    <textarea id="file-content" rows="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Created: <span id="created-date"></span></label>
+                </div>
+                <div class="form-group">
+                    <label>Modified: <span id="modified-date"></span></label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="delete-btn" class="delete-btn">Delete</button>
+                <button id="save-btn" class="save-btn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="try.js"></script>
+</body>
+</html>

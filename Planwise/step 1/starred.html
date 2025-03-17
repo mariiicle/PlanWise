@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanWise - Starred</title>
+    <link rel="stylesheet" href="starred.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Additional styles for improved empty state */
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            background-color: #f9f9fb;
+            border-radius: 12px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .empty-icon {
+            font-size: 3rem;
+            color: #6c5ce7;
+            margin-bottom: 1rem;
+            background-color: rgba(108, 92, 231, 0.1);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .empty-state p {
+            color: #777;
+            margin-bottom: 1.5rem;
+            max-width: 300px;
+            line-height: 1.5;
+        }
+        
+        .browse-btn {
+            padding: 10px 20px;
+            background-color: #6c5ce7;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+        
+        .browse-btn:hover {
+            background-color: #5c4ccc;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(108, 92, 231, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="logo-text">PlanWise</div>
+                <div class="plan-badge">Free</div>
+            </div>
+            
+            <div class="user-profile">
+                <div class="avatar">F</div>
+                <div class="user-info">
+                    <div class="user-name">My Files</div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+            
+            <button class="new-btn">
+                <i class="fas fa-plus"></i>
+                <span>New</span>
+            </button>
+            
+            <div class="nav-menu">
+                <div class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Recent</span>
+                </div>
+                <div class="nav-item active">
+                    <i class="fas fa-star"></i>
+                    <span>Starred</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-th-large"></i>
+                    <span>Templates</span>
+                </div>
+                <div class="nav-item projects">
+                    <i class="fas fa-folder"></i>
+                    <span>Projects</span>
+                    <i class="fas fa-plus add-project"></i>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-trash"></i>
+                    <span>Recycle Bin</span>
+                </div>
+            </div>
+            
+            <div class="upgrade-info">
+                <div class="plan-name">PlanWise Premium</div>
+                <div class="billing-info">Billed annually</div>
+                <div class="discount-badge">Save 48%</div>
+                <button class="upgrade-btn">
+                    <i class="fas fa-crown"></i>
+                    <span>Upgrade</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Search and user controls -->
+            <div class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search starred files...">
+                </div>
+                <div class="user-controls">
+                    <button class="icon-btn">
+                        <i class="fas fa-crown"></i>
+                        <span>Upgrade</span>
+                    </button>
+                    <button class="icon-btn">
+                        <i class="fas fa-history"></i>
+                    </button>
+                    <button class="icon-btn">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <div class="user-avatar">M</div>
+                </div>
+            </div>
+            
+            <!-- Starred documents section -->
+            <div class="starred-section">
+                <div class="section-header">
+                    <h2>Starred Projects</h2>
+                    <div class="view-controls">
+                        <div class="dropdown">
+                            <span>Last modified</span>
+                            <i class="fas fa-chevron-down"></i>
+                            <div class="dropdown-content">
+                                <div class="dropdown-item" data-value="modified">Last modified</div>
+                                <div class="dropdown-item" data-value="created">Date created</div>
+                                <div class="dropdown-item" data-value="name">Name</div>
+                                <div class="dropdown-item" data-value="type">Type</div>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <span>All types</span>
+                            <i class="fas fa-chevron-down"></i>
+                            <div class="dropdown-content">
+                                <div class="dropdown-item" data-value="all">All types</div>
+                                <div class="dropdown-item" data-value="document">Documents</div>
+                                <div class="dropdown-item" data-value="mindmap">Mind maps</div>
+                                <div class="dropdown-item" data-value="flowchart">Flowcharts</div>
+                                <div class="dropdown-item" data-value="diagram">Diagrams</div>
+                            </div>
+                        </div>
+                        <button class="view-btn active">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="files-grid" id="starred-files">
+                    <!-- Files will be dynamically added here by JavaScript -->
+                </div>
+                
+                <div class="empty-state" id="empty-state">
+                    <div class="empty-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>No starred files yet</h3>
+                    <p>Star your important files for quick access and keep your most valuable content organized</p>
+                    <button class="browse-btn">
+                        <i class="fas fa-search"></i>
+                        <span>Browse Files</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- File preview modal -->
+    <div id="fileModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">File Details</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="file-name">File Name:</label>
+                    <input type="text" id="file-name">
+                </div>
+                <div class="form-group">
+                    <label for="file-content">Content:</label>
+                    <textarea id="file-content" rows="10"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Created: <span id="created-date"></span></label>
+                </div>
+                <div class="form-group">
+                    <label>Modified: <span id="modified-date"></span></label>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="starred-checkbox" checked>
+                        <span class="checkmark"></span>
+                        Keep starred
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="delete-btn" class="delete-btn">Delete</button>
+                <button id="save-btn" class="save-btn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="starred.js"></script>
+</body>
+</html>
