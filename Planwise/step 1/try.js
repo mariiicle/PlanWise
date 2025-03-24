@@ -1,731 +1,847 @@
-// Global variable to expose addNewFile function
-let addNewFile;
+// DOM Elements
+const newProjectBtn = document.querySelector('.new-btn');
+const closeModalBtn = document.querySelector('.close-modal');
+const modal = document.getElementById('fileModal');
+const saveBtn = document.getElementById('save-btn');
+const deleteBtn = document.getElementById('delete-btn');
+const toolCards = document.querySelectorAll('.tool-card');
+const upgradeButtons = document.querySelectorAll('.upgrade-btn');
+const navItems = document.querySelectorAll('.nav-item');
+const modalTitle = document.getElementById('modal-title');
+const projectNameInput = document.getElementById('file-name');
+const projectTypeSelect = document.getElementById('project-type');
+const descriptionTextarea = document.getElementById('file-content');
+const createdDateSpan = document.getElementById('created-date');
+const modifiedDateSpan = document.getElementById('modified-date');
+const searchInput = document.querySelector('.search-bar input');
+const addProjectBtn = document.querySelector('.add-project');
+const userAvatar = document.querySelector('.user-avatar');
+const userProfile = document.querySelector('.user-profile');
 
-document.addEventListener('DOMContentLoaded', function() {
-    // File data store
-    let fileStore = {
-        files: [],
-        selectedFile: null,
-        history: []
-    };
+// Master Planner elements
+const masterPlannerModal = document.getElementById('masterPlannerModal');
+const tabBtns = document.querySelectorAll('.tab-btn');
+const workflowLinks = document.querySelectorAll('.workflow-link');
+const projectNameElement = document.getElementById('project-name');
+const projectCategoryElement = document.getElementById('project-category');
+const progressCircleText = document.querySelector('.progress-text');
+const progressBars = document.querySelectorAll('.progress-fill');
+const moduleStatus = document.querySelectorAll('.module-status');
+
+// Store projects data
+let projects = JSON.parse(localStorage.getItem('projects')) || [];
+let currentProjectId = null;
+
+// Initialize the application
+function init() {
+    loadProjects();
+    setupEventListeners();
+    updateUI();
+}
+
+// Set up all event listeners
+function setupEventListeners() {
+    // Modal controls
+    newProjectBtn.addEventListener('click', openNewProjectModal);
     
-    // Load data from localStorage
-    function loadData() {
-        const savedData = localStorage.getItem('fileManagementData');
-        if (savedData) {
-            fileStore = JSON.parse(savedData);
-            renderFiles();
-        } else {
-            // Add some sample files if no data exists
-            addSampleFiles();
-        }
-    }
-    
-    // Save data to localStorage
-    function saveData() {
-        localStorage.setItem('fileManagementData', JSON.stringify(fileStore));
-    }
-    
-    // File and project data stores
-    let projectStore = {
-        projects: [],
-        selectedProject: null
-    };
-    
-    // DOM elements
-    const homeNav = document.getElementById('homeNav');
-    const recentNav = document.getElementById('recentNav');
-    const starredNav = document.getElementById('starredNav');
-    const templatesNav = document.getElementById('templatesNav');
-    const projectsNav = document.getElementById('projectsNav');
-    const allFilesNav = document.getElementById('allFilesNav');
-    const recycleBinNav = document.getElementById('recycleBinNav');
-    
-    const homeTabContent = document.getElementById('homeTabContent');
-    const recentTabContent = document.getElementById('recentTabContent');
-    const starredTabContent = document.getElementById('starredTabContent');
-    const templatesTabContent = document.getElementById('templatesTabContent');
-    const projectsTabContent = document.getElementById('projectsTabContent');
-    const allFilesTabContent = document.getElementById('allFilesTabContent');
-    const recycleBinTabContent = document.getElementById('recycleBinTabContent');
-    
-    const fileListContainer = document.getElementById('fileList');
-    const newFileBtn = document.getElementById('newFileBtn');
-    const projectListContainer = document.getElementById('projectList');
-    
-    // Set up navigation event listeners
-    if (homeNav) homeNav.addEventListener('click', () => switchTab('homeTab'));
-    if (recentNav) recentNav.addEventListener('click', () => switchTab('recentTab'));
-    if (starredNav) starredNav.addEventListener('click', () => switchTab('starredTab'));
-    if (templatesNav) templatesNav.addEventListener('click', () => switchTab('templatesTab'));
-    if (projectsNav) projectsNav.addEventListener('click', () => switchTab('projectsTab'));
-    if (allFilesNav) allFilesNav.addEventListener('click', () => switchTab('allFilesTab'));
-    if (recycleBinNav) recycleBinNav.addEventListener('click', () => switchTab('recycleBinTab'));
-    
-    // Function to switch between tabs
-    function switchTab(tabId) {
-        // Hide all tab contents
-        const tabContents = document.querySelectorAll('.tab-content');
-        tabContents.forEach(tab => tab.classList.add('hidden'));
-        
-        // Deactivate all nav items
-        const navItems = document.querySelectorAll('.nav-item');
-        navItems.forEach(item => item.classList.remove('active'));
-        
-        // Show selected tab content and activate nav item
-        const selectedTabContent = document.getElementById(tabId + 'Content');
-        const selectedNavItem = document.getElementById(tabId + 'Nav');
-        
-        if (selectedTabContent) selectedTabContent.classList.remove('hidden');
-        if (selectedNavItem) selectedNavItem.classList.add('active');
-        
-        // Render appropriate content based on tab
-        if (tabId === 'allFilesTab') {
-            renderAllFiles();
-        } else if (tabId === 'recentTab') {
-            renderRecentFiles();
-        } else if (tabId === 'starredTab') {
-            renderStarredFiles();
-        } else if (tabId === 'projectsTab') {
-            renderProjects();
-        } else if (tabId === 'recycleBinTab') {
-            renderDeletedFiles();
-        }
-    }
-    
-    // Function to add sample files
-    function addSampleFiles() {
-        const sampleFiles = [
-            { id: 'file1', name: 'Project Proposal', type: 'document', starred: false, created: new Date().toISOString(), modified: new Date().toISOString(), deleted: false },
-            { id: 'file2', name: 'Budget Spreadsheet', type: 'spreadsheet', starred: true, created: new Date().toISOString(), modified: new Date().toISOString(), deleted: false },
-            { id: 'file3', name: 'Presentation Slides', type: 'presentation', starred: false, created: new Date().toISOString(), modified: new Date().toISOString(), deleted: false }
-        ];
-        
-        fileStore.files = sampleFiles;
-        saveData();
-        renderFiles();
-    }
-    
-    // Function to add sample projects
-    function addSampleProjects() {
-        const sampleProjects = [
-            { id: 'proj1', name: 'Marketing Campaign', fileIds: ['file1'] },
-            { id: 'proj2', name: 'Product Launch', fileIds: ['file2', 'file3'] }
-        ];
-        
-        projectStore.projects = sampleProjects;
-        localStorage.setItem('projectManagementData', JSON.stringify(projectStore));
-        renderProjects();
-    }
-    
-    // Function to render all files
-    function renderAllFiles() {
-        const activeFiles = fileStore.files.filter(file => !file.deleted);
-        const container = allFilesTabContent ? allFilesTabContent.querySelector('.file-list-container') : null;
-        renderFileList(activeFiles, container);
-    }
-    
-    // Function to render recent files
-    function renderRecentFiles() {
-        const recentFiles = [...fileStore.files]
-            .filter(file => !file.deleted)
-            .sort((a, b) => new Date(b.modified) - new Date(a.modified))
-            .slice(0, 5);
-        
-        const container = recentTabContent ? recentTabContent.querySelector('.file-list-container') : null;
-        renderFileList(recentFiles, container);
-    }
-    
-    // Function to render starred files
-    function renderStarredFiles() {
-        const starredFiles = fileStore.files.filter(file => file.starred && !file.deleted);
-        const container = starredTabContent ? starredTabContent.querySelector('.file-list-container') : null;
-        renderFileList(starredFiles, container);
-    }
-    
-    // Function to render deleted files
-    function renderDeletedFiles() {
-        const deletedFiles = fileStore.files.filter(file => file.deleted);
-        const container = recycleBinTabContent ? recycleBinTabContent.querySelector('.file-list-container') : null;
-        renderFileList(deletedFiles, container);
-    }
-    
-    // Function to render projects
-    function renderProjects() {
-        if (!projectListContainer) return;
-        
-        projectListContainer.innerHTML = '';
-        
-        projectStore.projects.forEach(project => {
-            const projectElement = document.createElement('div');
-            projectElement.className = 'project-item';
-            projectElement.innerHTML = `
-                <div class="project-name">${project.name}</div>
-                <div class="project-actions">
-                    <button class="edit-project-btn" data-id="${project.id}">Edit</button>
-                    <button class="delete-project-btn" data-id="${project.id}">Delete</button>
-                </div>
-            `;
-            
-            projectElement.addEventListener('click', () => selectProject(project.id));
-            projectListContainer.appendChild(projectElement);
+    // Find all close modal buttons (now multiple due to Master Planner modal)
+    const closeModalBtns = document.querySelectorAll('.close-modal');
+    closeModalBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const parentModal = this.closest('.modal');
+            if (parentModal) parentModal.style.display = 'none';
         });
-    }
+    });
     
-    // Function to render file list
-    function renderFileList(files, container) {
-        if (!container) return;
-        
-        container.innerHTML = '';
-        
-        if (files.length === 0) {
-            container.innerHTML = '<div class="empty-message">No files to display</div>';
-            return;
-        }
-        
-        files.forEach(file => {
-            const fileElement = document.createElement('div');
-            fileElement.className = 'file-item';
-            fileElement.dataset.id = file.id;
-            
-            const iconClass = getFileIconClass(file.type);
-            
-            fileElement.innerHTML = `
-                <div class="file-icon ${iconClass}"></div>
-                <div class="file-name">${file.name}</div>
-                <div class="file-modified">Modified: ${formatDate(file.modified)}</div>
-                <div class="file-actions">
-                    <button class="star-btn ${file.starred ? 'starred' : ''}" data-id="${file.id}">
-                        <i class="fa ${file.starred ? 'fa-star' : 'fa-star-o'}"></i>
-                    </button>
-                    <button class="edit-btn" data-id="${file.id}">Edit</button>
-                    ${!file.deleted ? 
-                        `<button class="delete-btn" data-id="${file.id}">Delete</button>` : 
-                        `<button class="restore-btn" data-id="${file.id}">Restore</button>
-                         <button class="permanently-delete-btn" data-id="${file.id}">Permanently Delete</button>`
-                    }
-                </div>
-            `;
-            
-            fileElement.addEventListener('click', (e) => {
-                if (!e.target.closest('button')) {
-                    selectFile(file.id);
-                }
-            });
-            
-            container.appendChild(fileElement);
-        });
-        
-        // Add event listeners for file actions
-        container.querySelectorAll('.star-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                toggleStarFile(e.target.closest('button').dataset.id);
-                e.stopPropagation();
-            });
-        });
-        
-        container.querySelectorAll('.edit-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                editFile(e.target.dataset.id);
-                e.stopPropagation();
-            });
-        });
-        
-        container.querySelectorAll('.delete-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                deleteFile(e.target.dataset.id);
-                e.stopPropagation();
-            });
-        });
-        
-        container.querySelectorAll('.restore-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                restoreFile(e.target.dataset.id);
-                e.stopPropagation();
-            });
-        });
-        
-        container.querySelectorAll('.permanently-delete-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                permanentlyDeleteFile(e.target.dataset.id);
-                e.stopPropagation();
-            });
-        });
-    }
+    saveBtn.addEventListener('click', saveProject);
+    deleteBtn.addEventListener('click', deleteProject);
     
-    // Helper function to get file icon class
-    function getFileIconClass(fileType) {
-        switch(fileType) {
-            case 'document':
-                return 'document-icon';
-            case 'spreadsheet':
-                return 'spreadsheet-icon';
-            case 'presentation':
-                return 'presentation-icon';
-            default:
-                return 'file-icon';
-        }
-    }
-    
-    // Helper function to format date
-    function formatDate(dateString) {
-        const date = new Date(dateString);
-        return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
-    }
-    
-    // Function to select a file
-    function selectFile(fileId) {
-        fileStore.selectedFile = fileId;
-        
-        // Add to history
-        fileStore.history = fileStore.history.filter(id => id !== fileId);
-        fileStore.history.unshift(fileId);
-        
-        // Update file's modified date
-        const fileIndex = fileStore.files.findIndex(file => file.id === fileId);
-        if (fileIndex !== -1) {
-            fileStore.files[fileIndex].modified = new Date().toISOString();
-        }
-        
-        saveData();
-        highlightSelectedFile(fileId);
-        
-        // Here you would typically open the file in an editor
-        openFileInEditor(fileId);
-    }
-    
-    // Function to highlight selected file
-    function highlightSelectedFile(fileId) {
-        document.querySelectorAll('.file-item').forEach(item => {
-            item.classList.remove('selected');
-        });
-        
-        const selectedItem = document.querySelector(`.file-item[data-id="${fileId}"]`);
-        if (selectedItem) {
-            selectedItem.classList.add('selected');
-        }
-    }
-    
-    // Function to open file in editor
-    function openFileInEditor(fileId) {
-        const file = fileStore.files.find(f => f.id === fileId);
-        if (!file) return;
-        
-        // Implement file opening logic here
-        console.log(`Opening file: ${file.name}`);
-        // This would typically involve loading file content into an editor
-    }
-    
-    // Function to toggle star on a file
-    function toggleStarFile(fileId) {
-        const fileIndex = fileStore.files.findIndex(file => file.id === fileId);
-        if (fileIndex !== -1) {
-            fileStore.files[fileIndex].starred = !fileStore.files[fileIndex].starred;
-            saveData();
-            renderFiles();
-        }
-    }
-    
-    // Function to edit a file
-    function editFile(fileId) {
-        const file = fileStore.files.find(f => f.id === fileId);
-        if (!file) return;
-        
-        const newName = prompt('Enter new file name:', file.name);
-        if (newName && newName !== file.name) {
-            file.name = newName;
-            file.modified = new Date().toISOString();
-            saveData();
-            renderFiles();
-        }
-    }
-    
-    // Function to delete a file (move to recycle bin)
-    function deleteFile(fileId) {
-        const fileIndex = fileStore.files.findIndex(file => file.id === fileId);
-        if (fileIndex !== -1) {
-            fileStore.files[fileIndex].deleted = true;
-            saveData();
-            renderFiles();
-        }
-    }
-    
-    // Function to restore a file from recycle bin
-    function restoreFile(fileId) {
-        const fileIndex = fileStore.files.findIndex(file => file.id === fileId);
-        if (fileIndex !== -1) {
-            fileStore.files[fileIndex].deleted = false;
-            saveData();
-            renderFiles();
-        }
-    }
-    
-    // Function to permanently delete a file
-    function permanentlyDeleteFile(fileId) {
-        if (confirm('Are you sure you want to permanently delete this file? This action cannot be undone.')) {
-            fileStore.files = fileStore.files.filter(file => file.id !== fileId);
-            fileStore.history = fileStore.history.filter(id => id !== fileId);
-            
-            // Also remove from any projects
-            projectStore.projects.forEach(project => {
-                project.fileIds = project.fileIds.filter(id => id !== fileId);
-            });
-            
-            saveData();
-            localStorage.setItem('projectManagementData', JSON.stringify(projectStore));
-            renderFiles();
-        }
-    }
-    
-    // Function to select a project
-    function selectProject(projectId) {
-        projectStore.selectedProject = projectId;
-        localStorage.setItem('projectManagementData', JSON.stringify(projectStore));
-        
-        const project = projectStore.projects.find(p => p.id === projectId);
-        if (project) {
-            // Filter files to show only those in this project
-            const projectFiles = fileStore.files.filter(file => 
-                project.fileIds.includes(file.id) && !file.
-                project.fileIds.includes(file.id) && !file.deleted
-            );
-            
-            const projectFilesContainer = projectsTabContent ? projectsTabContent.querySelector('.project-files-container') : null;
-            if (projectFilesContainer) {
-                renderFileList(projectFiles, projectFilesContainer);
-            }
-        }
-    }
-    
-    // Function to render files
-    function renderFiles() {
-        renderAllFiles();
-        renderRecentFiles();
-        renderStarredFiles();
-        
-        // If a project is selected, render its files
-        if (projectStore.selectedProject) {
-            const project = projectStore.projects.find(p => p.id === projectStore.selectedProject);
-            if (project) {
-                const projectFiles = fileStore.files.filter(file => 
-                    project.fileIds.includes(file.id) && !file.deleted
-                );
+    // Close modals when clicking outside
+    window.addEventListener('click', (e) => {
+        if (e.target.classList.contains('modal')) e.target.style.display = 'none';
+    });
+
+    // Tool cards
+    toolCards.forEach(card => {
+        card.addEventListener('click', (e) => {
+            if (e.target.classList.contains('start-btn')) {
+                const toolName = card.querySelector('h3').textContent.trim();
                 
-                const projectFilesContainer = projectsTabContent ? projectsTabContent.querySelector('.project-files-container') : null;
-                if (projectFilesContainer) {
-                    renderFileList(projectFiles, projectFilesContainer);
+                // Special handling for Master Planner
+                if (toolName.includes('Master Planner')) {
+                    openMasterPlanner();
+                } else {
+                    openToolModal(toolName);
                 }
             }
-        }
-    }
-    
-    // Function to create a new file
-    function createNewFile(fileType) {
-        const fileId = 'file' + Date.now();
-        const fileName = `New ${fileType.charAt(0).toUpperCase() + fileType.slice(1)}`;
-        
-        const newFile = {
-            id: fileId,
-            name: fileName,
-            type: fileType,
-            starred: false,
-            created: new Date().toISOString(),
-            modified: new Date().toISOString(),
-            deleted: false,
-            content: ''
-        };
-        
-        fileStore.files.push(newFile);
-        saveData();
-        
-        // If a project is selected, add the file to that project
-        if (projectStore.selectedProject) {
-            const projectIndex = projectStore.projects.findIndex(p => p.id === projectStore.selectedProject);
-            if (projectIndex !== -1) {
-                projectStore.projects[projectIndex].fileIds.push(fileId);
-                localStorage.setItem('projectManagementData', JSON.stringify(projectStore));
-            }
-        }
-        
-        renderFiles();
-        return fileId;
-    }
-    
-    // Function to create a new project
-    function createNewProject(projectName) {
-        const projectId = 'proj' + Date.now();
-        
-        const newProject = {
-            id: projectId,
-            name: projectName,
-            fileIds: []
-        };
-        
-        projectStore.projects.push(newProject);
-        localStorage.setItem('projectManagementData', JSON.stringify(projectStore));
-        
-        renderProjects();
-        return projectId;
-    }
-    
-    // Function to delete a project
-    function deleteProject(projectId) {
-        if (confirm('Are you sure you want to delete this project? The files in this project will not be deleted.')) {
-            projectStore.projects = projectStore.projects.filter(p => p.id !== projectId);
-            
-            if (projectStore.selectedProject === projectId) {
-                projectStore.selectedProject = null;
-            }
-            
-            localStorage.setItem('projectManagementData', JSON.stringify(projectStore));
-            renderProjects();
-        }
-    }
-    
-    // Function to edit a project
-    function editProject(projectId) {
-        const project = projectStore.projects.find(p => p.id === projectId);
-        if (!project) return;
-        
-        const newName = prompt('Enter new project name:', project.name);
-        if (newName && newName !== project.name) {
-            project.name = newName;
-            localStorage.setItem('projectManagementData', JSON.stringify(projectStore));
-            renderProjects();
-        }
-    }
-    
-    // Function to add a file to a project
-    function addFileToProject(fileId, projectId) {
-        const projectIndex = projectStore.projects.findIndex(p => p.id === projectId);
-        if (projectIndex === -1) return;
-        
-        if (!projectStore.projects[projectIndex].fileIds.includes(fileId)) {
-            projectStore.projects[projectIndex].fileIds.push(fileId);
-            localStorage.setItem('projectManagementData', JSON.stringify(projectStore));
-            
-            if (projectStore.selectedProject === projectId) {
-                renderProjects();
-            }
-        }
-    }
-    
-    // Function to remove a file from a project
-    function removeFileFromProject(fileId, projectId) {
-        const projectIndex = projectStore.projects.findIndex(p => p.id === projectId);
-        if (projectIndex === -1) return;
-        
-        projectStore.projects[projectIndex].fileIds = projectStore.projects[projectIndex].fileIds.filter(id => id !== fileId);
-        localStorage.setItem('projectManagementData', JSON.stringify(projectStore));
-        
-        if (projectStore.selectedProject === projectId) {
-            renderProjects();
-        }
-    }
-    
-    // Set up event listener for new file button
-    if (newFileBtn) {
-        newFileBtn.addEventListener('click', () => {
-            // Show file type selector dropdown or modal
-            showFileTypeSelector();
         });
-    }
-    
-    // Function to show file type selector
-    function showFileTypeSelector() {
-        const modal = document.createElement('div');
-        modal.className = 'file-type-modal';
-        modal.innerHTML = `
-            <div class="file-type-modal-content">
-                <h3>Select File Type</h3>
-                <div class="file-type-options">
-                    <button class="file-type-option" data-type="document">
-                        <div class="file-type-icon document-icon"></div>
-                        <div class="file-type-name">Document</div>
-                    </button>
-                    <button class="file-type-option" data-type="spreadsheet">
-                        <div class="file-type-icon spreadsheet-icon"></div>
-                        <div class="file-type-name">Spreadsheet</div>
-                    </button>
-                    <button class="file-type-option" data-type="presentation">
-                        <div class="file-type-icon presentation-icon"></div>
-                        <div class="file-type-name">Presentation</div>
-                    </button>
-                </div>
-                <div class="modal-actions">
-                    <button class="cancel-btn">Cancel</button>
-                </div>
-            </div>
-        `;
-        
-        document.body.appendChild(modal);
-        
-        // Add event listeners to file type options
-        modal.querySelectorAll('.file-type-option').forEach(option => {
-            option.addEventListener('click', () => {
-                const fileType = option.dataset.type;
-                const newFileId = createNewFile(fileType);
-                
-                // Close modal
-                document.body.removeChild(modal);
-                
-                // Open the new file
-                selectFile(newFileId);
-            });
-        });
-        
-        // Add event listener to cancel button
-        modal.querySelector('.cancel-btn').addEventListener('click', () => {
-            document.body.removeChild(modal);
-        });
-        
-        // Add event listener to close when clicking outside
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                document.body.removeChild(modal);
-            }
-        });
-    }
-    
-    // Function to empty recycle bin
-    function emptyRecycleBin() {
-        if (confirm('Are you sure you want to permanently delete all files in the recycle bin? This action cannot be undone.')) {
-            fileStore.files = fileStore.files.filter(file => !file.deleted);
-            saveData();
-            renderDeletedFiles();
-        }
-    }
-    
-    // Set up event listener for empty recycle bin button
-    const emptyRecycleBinBtn = document.getElementById('emptyRecycleBinBtn');
-    if (emptyRecycleBinBtn) {
-        emptyRecycleBinBtn.addEventListener('click', emptyRecycleBin);
-    }
-    
-    // Function to restore all files from recycle bin
-    function restoreAllFiles() {
-        fileStore.files.forEach(file => {
-            if (file.deleted) {
-                file.deleted = false;
-            }
-        });
-        
-        saveData();
-        renderDeletedFiles();
-    }
-    
-    // Set up event listener for restore all button
-    const restoreAllBtn = document.getElementById('restoreAllBtn');
-    if (restoreAllBtn) {
-        restoreAllBtn.addEventListener('click', restoreAllFiles);
-    }
-    
-    // Function to create a new file (exposed globally)
-    addNewFile = function(fileType) {
-        return createNewFile(fileType);
-    };
-    
-    // Load project data from localStorage
-    function loadProjectData() {
-        const savedData = localStorage.getItem('projectManagementData');
-        if (savedData) {
-            projectStore = JSON.parse(savedData);
-        } else {
-            // Add sample projects if no data exists
-            addSampleProjects();
-        }
-    }
-    
-    // Initialize the app
-    loadData();
-    loadProjectData();
-    
-    // Default to home tab
-    switchTab('homeTab');
-});
+    });
 
-// Add this function to the window object so it can be called from outside
-window.addNewFile = addNewFile;
-
-// Function to show template gallery
-function showTemplateGallery() {
-    const templates = [
-        { id: 'template1', name: 'Budget Report', type: 'spreadsheet', thumbnail: 'images/templates/budget.png' },
-        { id: 'template2', name: 'Project Proposal', type: 'document', thumbnail: 'images/templates/proposal.png' },
-        { id: 'template3', name: 'Sales Presentation', type: 'presentation', thumbnail: 'images/templates/presentation.png' }
-    ];
-    
-    const modal = document.createElement('div');
-    modal.className = 'template-modal';
-    modal.innerHTML = `
-        <div class="template-modal-content">
-            <h3>Template Gallery</h3>
-            <div class="template-grid">
-                ${templates.map(template => `
-                    <div class="template-item" data-id="${template.id}" data-type="${template.type}">
-                        <div class="template-thumbnail">
-                            <img src="${template.thumbnail}" alt="${template.name}">
-                        </div>
-                        <div class="template-name">${template.name}</div>
-                        <div class="template-type">${template.type}</div>
-                    </div>
-                `).join('')}
-            </div>
-            <div class="modal-actions">
-                <button class="cancel-btn">Cancel</button>
-            </div>
-        </div>
-    `;
-    
-    document.body.appendChild(modal);
-    
-    // Add event listeners to template items
-    modal.querySelectorAll('.template-item').forEach(item => {
+    // Navigation
+    navItems.forEach(item => {
         item.addEventListener('click', () => {
-            const templateId = item.dataset.id;
-            const templateType = item.dataset.type;
-            
-            // Create new file from template
-            const fileId = window.addNewFile(templateType);
-            
-            // Close modal
-            document.body.removeChild(modal);
-            
-            // Here you would typically load the template content into the file
-            console.log(`Creating new file from template: ${templateId}`);
+            navItems.forEach(nav => nav.classList.remove('active'));
+            item.classList.add('active');
+            updateContentBasedOnNav(item);
         });
     });
+
+    // Upgrade buttons
+    upgradeButtons.forEach(button => {
+        button.addEventListener('click', showUpgradeOptions);
+    });
+
+    // Search functionality
+    searchInput.addEventListener('input', searchProjects);
     
-    // Add event listener to cancel button
-    modal.querySelector('.cancel-btn').addEventListener('click', () => {
-        document.body.removeChild(modal);
+    // Add project from sidebar
+    addProjectBtn.addEventListener('click', openNewProjectModal);
+    
+    // User profile click
+    userAvatar.addEventListener('click', toggleUserMenu);
+    userProfile.addEventListener('click', toggleProjectDropdown);
+    
+    // Module checkboxes
+    const moduleCheckboxes = document.querySelectorAll('.module-check input');
+    moduleCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateProjectProgress);
     });
     
-    // Add event listener to close when clicking outside
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            document.body.removeChild(modal);
+    // Add keyboard shortcuts
+    document.addEventListener('keydown', handleKeyboardShortcuts);
+    
+    // Master Planner tab navigation
+    setupMasterPlannerTabs();
+    
+    // Master Planner workflow links
+    setupWorkflowLinks();
+    
+    // Master Planner save button
+    const masterPlannerSaveBtn = document.querySelector('.master-planner-modal .save-btn');
+    if (masterPlannerSaveBtn) {
+        masterPlannerSaveBtn.addEventListener('click', saveMasterPlannerProgress);
+    }
+    
+    // Master Planner export button
+    const masterPlannerExportBtn = document.querySelector('.master-planner-modal .export-btn');
+    if (masterPlannerExportBtn) {
+        masterPlannerExportBtn.addEventListener('click', exportMasterPlannerProject);
+    }
+    
+    // Tool buttons in Master Planner
+    setupToolButtonListeners();
+}
+
+// Setup Master Planner tab navigation
+function setupMasterPlannerTabs() {
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Remove active class from all tabs
+            tabBtns.forEach(tab => tab.classList.remove('active'));
+            
+            // Add active class to clicked tab
+            this.classList.add('active');
+            
+            // Hide all tab panes
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+            
+            // Show the selected tab pane
+            const tabId = this.getAttribute('data-tab');
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+}
+
+// Setup Master Planner workflow links
+function setupWorkflowLinks() {
+    workflowLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Get the tab to show
+            const tabId = this.getAttribute('data-tab');
+            
+            // Remove active class from all tabs and add to selected
+            tabBtns.forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.getAttribute('data-tab') === tabId) {
+                    tab.classList.add('active');
+                }
+            });
+            
+            // Hide all tab panes and show selected
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+}
+
+// Setup tool button listeners in Master Planner
+function setupToolButtonListeners() {
+    const toolButtons = document.querySelectorAll('.tool-btn');
+    toolButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Simulate tool interaction - in a real app this would do more
+            showNotification(`${this.textContent.trim()} tool activated`);
+            
+            // Mark module as in progress
+            updateModuleProgress(this.closest('.tab-pane').id, 50);
+        });
+    });
+}
+
+// Open Master Planner interface
+function openMasterPlanner() {
+    // If there are no projects, create one
+    if (projects.length === 0) {
+        createNewProject('Master Plan Project');
+    }
+    
+    // Load the most recent project into Master Planner
+    loadProjectIntoMasterPlanner(projects[0]);
+    
+    // Display the Master Planner modal
+    masterPlannerModal.style.display = 'block';
+}
+
+// Create a new project with the given name
+function createNewProject(name) {
+    const now = new Date();
+    const formattedDate = now.toLocaleString();
+    
+    const newProject = {
+        id: Date.now().toString(),
+        name: name,
+        type: 'residential',
+        description: 'Created from Master Planner.',
+        created: formattedDate,
+        modified: formattedDate,
+        completedModules: [],
+        progress: 0,
+        starred: false,
+        moduleProgress: {
+            'vicinity': 0,
+            'site': 0,
+            'matrix': 0,
+            'bubble': 0,
+            'zoning': 0
+        }
+    };
+    
+    projects.unshift(newProject);
+    saveProjects();
+    return newProject;
+}
+
+// Load project data into Master Planner interface
+function loadProjectIntoMasterPlanner(project) {
+    if (!project) return;
+    
+    currentProjectId = project.id;
+    
+    // Update project info
+    projectNameElement.textContent = project.name;
+    projectCategoryElement.textContent = project.type;
+    
+    // Update progress circle
+    progressCircleText.textContent = `${project.progress}%`;
+    
+    // Update module progress bars and status
+    updateAllModuleProgressBars(project);
+}
+
+// Update all module progress bars based on project data
+function updateAllModuleProgressBars(project) {
+    const moduleMapping = {
+        'vicinity-map': 'vicinity',
+        'site-analysis': 'site',
+        'matrix-diagram': 'matrix',
+        'bubble-diagram': 'bubble',
+        'zoning': 'zoning'
+    };
+    
+    // Initialize moduleProgress if it doesn't exist
+    if (!project.moduleProgress) {
+        project.moduleProgress = {
+            'vicinity': 0,
+            'site': 0,
+            'matrix': 0,
+            'bubble': 0,
+            'zoning': 0
+        };
+        
+        // Calculate progress based on completed modules
+        project.completedModules.forEach(module => {
+            const shortName = moduleMapping[module];
+            if (shortName) {
+                project.moduleProgress[shortName] = 100;
+            }
+        });
+    }
+    
+    // Update progress bars and status text
+    const modules = ['vicinity', 'site', 'matrix', 'bubble', 'zoning'];
+    modules.forEach((module, index) => {
+        const progress = project.moduleProgress[module] || 0;
+        
+        // Update progress bar
+        if (progressBars[index]) {
+            progressBars[index].style.width = `${progress}%`;
+        }
+        
+        // Update status text
+        if (moduleStatus[index]) {
+            if (progress === 0) {
+                moduleStatus[index].textContent = 'Not Started';
+            } else if (progress < 100) {
+                moduleStatus[index].textContent = 'In Progress';
+            } else {
+                moduleStatus[index].textContent = 'Completed';
+            }
         }
     });
 }
 
-// Add this function to the window object so it can be called from outside
-window.showTemplateGallery = showTemplateGallery;
-
-// Listen for keyboard shortcuts
-document.addEventListener('keydown', function(event) {
-    // Ctrl+N for new file
-    if (event.ctrlKey && event.key === 'n') {
-        event.preventDefault();
-        showFileTypeSelector();
+// Update progress for a specific module
+function updateModuleProgress(moduleId, progressValue) {
+    if (!currentProjectId) return;
+    
+    const projectIndex = projects.findIndex(project => project.id === currentProjectId);
+    if (projectIndex === -1) return;
+    
+    // Make sure moduleProgress exists
+    if (!projects[projectIndex].moduleProgress) {
+        projects[projectIndex].moduleProgress = {
+            'vicinity': 0,
+            'site': 0,
+            'matrix': 0,
+            'bubble': 0,
+            'zoning': 0
+        };
     }
     
-    // Ctrl+P for new project
-    if (event.ctrlKey && event.key === 'p') {
-        event.preventDefault();
-        const projectName = prompt('Enter project name:');
-        if (projectName) {
-            createNewProject(projectName);
+    // Update the progress for the specific module
+    projects[projectIndex].moduleProgress[moduleId] = progressValue;
+    
+    // Recalculate overall progress
+    const modules = ['vicinity', 'site', 'matrix', 'bubble', 'zoning'];
+    const totalProgress = modules.reduce((sum, module) => {
+        return sum + (projects[projectIndex].moduleProgress[module] || 0);
+    }, 0);
+    
+    projects[projectIndex].progress = Math.round(totalProgress / modules.length);
+    
+    // Update the UI
+    progressCircleText.textContent = `${projects[projectIndex].progress}%`;
+    
+    // Update module progress bars and status
+    updateAllModuleProgressBars(projects[projectIndex]);
+    
+    // Update completedModules based on 100% progress
+    const moduleMapping = {
+        'vicinity': 'vicinity-map',
+        'site': 'site-analysis',
+        'matrix': 'matrix-diagram',
+        'bubble': 'bubble-diagram',
+        'zoning': 'zoning'
+    };
+    
+    projects[projectIndex].completedModules = [];
+    for (const [shortName, progress] of Object.entries(projects[projectIndex].moduleProgress)) {
+        if (progress === 100 && moduleMapping[shortName]) {
+            projects[projectIndex].completedModules.push(moduleMapping[shortName]);
         }
     }
-});
+    
+    // Update modified date
+    const now = new Date();
+    projects[projectIndex].modified = now.toLocaleString();
+    
+    // Save changes
+    saveProjects();
+}
+
+// Save Master Planner progress
+function saveMasterPlannerProgress() {
+    if (!currentProjectId) return;
+    
+    // In a real app, this would save more detailed data
+    showNotification('Project progress saved');
+}
+
+// Export Master Planner project
+function exportMasterPlannerProject() {
+    if (!currentProjectId) return;
+    
+    // In a real app, this would generate exportable files
+    showNotification('Exporting project data...');
+    setTimeout(() => {
+        showNotification('Project exported successfully');
+    }, 1500);
+}
+
+// Open modal for creating a new project
+function openNewProjectModal() {
+    modalTitle.textContent = 'Create New Project';
+    projectNameInput.value = '';
+    projectTypeSelect.value = 'residential';
+    descriptionTextarea.value = '';
+    
+    const now = new Date();
+    const formattedDate = now.toLocaleString();
+    createdDateSpan.textContent = formattedDate;
+    modifiedDateSpan.textContent = formattedDate;
+    
+    // Clear checkboxes
+    const moduleCheckboxes = document.querySelectorAll('.module-check input');
+    moduleCheckboxes.forEach(checkbox => checkbox.checked = false);
+    
+    currentProjectId = null;
+    deleteBtn.style.display = 'none';
+    modal.style.display = 'flex';
+}
+
+// Open modal for a specific tool
+function openToolModal(toolName) {
+    modalTitle.textContent = toolName;
+    
+    // If no project exists, create one
+    if (projects.length === 0) {
+        projectNameInput.value = 'New ' + toolName + ' Project';
+        projectTypeSelect.value = 'residential';
+        descriptionTextarea.value = 'Created from ' + toolName + ' tool.';
+        
+        const now = new Date();
+        const formattedDate = now.toLocaleString();
+        createdDateSpan.textContent = formattedDate;
+        modifiedDateSpan.textContent = formattedDate;
+        
+        // Check the related module checkbox
+        checkRelatedModule(toolName);
+        
+        currentProjectId = null;
+        deleteBtn.style.display = 'none';
+    } else {
+        // Open most recent project and check the related module
+        loadProject(projects[0].id);
+        checkRelatedModule(toolName);
+    }
+    
+    modal.style.display = 'flex';
+}
+
+// Check the related module checkbox based on tool name
+function checkRelatedModule(toolName) {
+    let moduleId;
+    
+    switch(toolName) {
+        case 'Vicinity Map':
+            moduleId = 'vicinity-map';
+            break;
+        case 'Site Analysis':
+            moduleId = 'site-analysis';
+            break;
+        case 'Matrix Diagram':
+            moduleId = 'matrix-diagram';
+            break;
+        case 'Bubble Diagram':
+            moduleId = 'bubble-diagram';
+            break;
+        case 'Zoning':
+            moduleId = 'zoning';
+            break;
+        default:
+            return;
+    }
+    
+    const checkbox = document.getElementById(moduleId);
+    if (checkbox) checkbox.checked = true;
+}
+
+// Close the modal
+function closeModal() {
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        modal.style.display = 'none';
+    });
+}
+
+// Save project data
+function saveProject() {
+    const now = new Date();
+    const formattedDate = now.toLocaleString();
+    
+    const moduleCheckboxes = document.querySelectorAll('.module-check input');
+    const completedModules = Array.from(moduleCheckboxes)
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.id);
+    
+    // Get progress percentage
+    const progress = Math.round((completedModules.length / moduleCheckboxes.length) * 100);
+    
+    if (currentProjectId) {
+        // Update existing project
+        const projectIndex = projects.findIndex(project => project.id === currentProjectId);
+        if (projectIndex !== -1) {
+            // Create moduleProgress object if it doesn't exist
+            if (!projects[projectIndex].moduleProgress) {
+                projects[projectIndex].moduleProgress = {
+                    'vicinity': 0,
+                    'site': 0,
+                    'matrix': 0,
+                    'bubble': 0,
+                    'zoning': 0
+                };
+            }
+            
+            // Update module progress based on completed modules
+            const moduleMapping = {
+                'vicinity-map': 'vicinity',
+                'site-analysis': 'site',
+                'matrix-diagram': 'matrix',
+                'bubble-diagram': 'bubble',
+                'zoning': 'zoning'
+            };
+            
+            // Reset module progress
+            for (const key in projects[projectIndex].moduleProgress) {
+                projects[projectIndex].moduleProgress[key] = 0;
+            }
+            
+            // Set completed modules to 100%
+            completedModules.forEach(module => {
+                const shortName = moduleMapping[module];
+                if (shortName) {
+                    projects[projectIndex].moduleProgress[shortName] = 100;
+                }
+            });
+            
+            projects[projectIndex] = {
+                ...projects[projectIndex],
+                name: projectNameInput.value,
+                type: projectTypeSelect.value,
+                description: descriptionTextarea.value,
+                modified: formattedDate,
+                completedModules,
+                progress
+            };
+        }
+    } else {
+        // Create new project
+        const moduleMapping = {
+            'vicinity-map': 'vicinity',
+            'site-analysis': 'site',
+            'matrix-diagram': 'matrix',
+            'bubble-diagram': 'bubble',
+            'zoning': 'zoning'
+        };
+        
+        // Create moduleProgress object
+        const moduleProgress = {
+            'vicinity': 0,
+            'site': 0,
+            'matrix': 0,
+            'bubble': 0,
+            'zoning': 0
+        };
+        
+        // Set completed modules to 100%
+        completedModules.forEach(module => {
+            const shortName = moduleMapping[module];
+            if (shortName) {
+                moduleProgress[shortName] = 100;
+            }
+        });
+        
+        const newProject = {
+            id: Date.now().toString(),
+            name: projectNameInput.value,
+            type: projectTypeSelect.value,
+            description: descriptionTextarea.value,
+            created: formattedDate,
+            modified: formattedDate,
+            completedModules,
+            progress,
+            starred: false,
+            moduleProgress
+        };
+        
+        projects.unshift(newProject);
+    }
+    
+    // Save to localStorage and update UI
+    saveProjects();
+    closeModal();
+    showNotification(currentProjectId ? 'Project updated successfully' : 'Project created successfully');
+}
+
+// Delete current project
+function deleteProject() {
+    if (!currentProjectId) return;
+    
+    if (confirm('Are you sure you want to delete this project?')) {
+        projects = projects.filter(project => project.id !== currentProjectId);
+        saveProjects();
+        closeModal();
+        showNotification('Project deleted');
+    }
+}
+
+// Load project data into modal
+function loadProject(projectId) {
+    const project = projects.find(p => p.id === projectId);
+    if (!project) return;
+    
+    currentProjectId = project.id;
+    modalTitle.textContent = 'Edit Project';
+    projectNameInput.value = project.name;
+    projectTypeSelect.value = project.type;
+    descriptionTextarea.value = project.description;
+    createdDateSpan.textContent = project.created;
+    modifiedDateSpan.textContent = project.modified;
+    
+    // Set checkbox states
+    const moduleCheckboxes = document.querySelectorAll('.module-check input');
+    moduleCheckboxes.forEach(checkbox => {
+        checkbox.checked = project.completedModules.includes(checkbox.id);
+    });
+    
+    deleteBtn.style.display = 'block';
+    modal.style.display = 'flex';
+}
+
+// Update project progress when checkboxes are changed
+function updateProjectProgress() {
+    if (!currentProjectId) return;
+    
+    const moduleCheckboxes = document.querySelectorAll('.module-check input');
+    const completedModules = Array.from(moduleCheckboxes)
+        .filter(checkbox => checkbox.checked)
+        .map(checkbox => checkbox.id);
+    
+    // Get progress percentage
+    const progress = Math.round((completedModules.length / moduleCheckboxes.length) * 100);
+    
+    const projectIndex = projects.findIndex(project => project.id === currentProjectId);
+    if (projectIndex !== -1) {
+        // Create moduleProgress object if it doesn't exist
+        if (!projects[projectIndex].moduleProgress) {
+            projects[projectIndex].moduleProgress = {
+                'vicinity': 0,
+                'site': 0,
+                'matrix': 0,
+                'bubble': 0,
+                'zoning': 0
+            };
+        }
+        
+        // Update module progress based on completed modules
+        const moduleMapping = {
+            'vicinity-map': 'vicinity',
+            'site-analysis': 'site',
+            'matrix-diagram': 'matrix',
+            'bubble-diagram': 'bubble',
+            'zoning': 'zoning'
+        };
+        
+        // Reset module progress
+        for (const key in projects[projectIndex].moduleProgress) {
+            projects[projectIndex].moduleProgress[key] = 0;
+        }
+        
+        // Set completed modules to 100%
+        completedModules.forEach(module => {
+            const shortName = moduleMapping[module];
+            if (shortName) {
+                projects[projectIndex].moduleProgress[shortName] = 100;
+            }
+        });
+        
+        projects[projectIndex].completedModules = completedModules;
+        projects[projectIndex].progress = progress;
+        
+        // Update modified date
+        const now = new Date();
+        projects[projectIndex].modified = now.toLocaleString();
+        modifiedDateSpan.textContent = projects[projectIndex].modified;
+        
+        saveProjects();
+    }
+}
+
+// Save projects to localStorage
+function saveProjects() {
+    localStorage.setItem('projects', JSON.stringify(projects));
+    loadProjects();
+}
+
+// Load projects from localStorage
+function loadProjects() {
+    projects = JSON.parse(localStorage.getItem('projects')) || [];
+    updateUI();
+}
+
+// Update UI based on project data
+function updateUI() {
+    // If we implement a projects list view, we would update it here
+    console.log('Projects updated:', projects);
+}
+
+// Update content based on navigation selection
+function updateContentBasedOnNav(navItem) {
+    const navText = navItem.querySelector('span').textContent;
+    console.log(`Navigated to: ${navText}`);
+    
+    // In a full implementation, we would update the main content area
+    // based on the selected navigation item
+}
+
+// Show upgrade options modal
+function showUpgradeOptions() {
+    alert('Upgrade to PlanWise Pro for additional features!');
+    // In a full implementation, this would open an upgrade modal
+}
+
+// Search projects functionality
+function searchProjects() {
+    const searchTerm = searchInput.value.toLowerCase();
+    console.log(`Searching for: ${searchTerm}`);
+    
+    // In a full implementation, we would filter the projects list
+    // based on the search term
+}
+
+// Toggle user menu
+function toggleUserMenu() {
+    console.log('User menu toggled');
+    // In a full implementation, this would show a dropdown menu
+}
+
+// Toggle project dropdown
+function toggleProjectDropdown() {
+    console.log('Project dropdown toggled');
+    // In a full implementation, this would show/hide project options
+}
+
+// Show notification
+function showNotification(message) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.classList.add('notification');
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: var(--primary-color);
+        color: white;
+        padding: 12px 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        z-index: 1001;
+        animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s forwards;
+    `;
+    
+    // Add animation keyframes
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes slideIn {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Add to body and remove after animation
+    document.body.appendChild(notification);
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
+// Handle keyboard shortcuts
+function handleKeyboardShortcuts(e) {
+    // Ctrl/Cmd + N: New project
+    if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
+        e.preventDefault();
+        openNewProjectModal();
+    }
+    
+    // Escape: Close modal
+    if (e.key === 'Escape' && (modal.style.display === 'flex' || masterPlannerModal.style.display === 'block')) {
+        closeModal();
+    }
+    
+    // Ctrl/Cmd + S: Save project when modal is open
+    if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        if (modal.style.display === 'flex') {
+            e.preventDefault();
+            saveProject();
+        } else if (masterPlannerModal.style.display === 'block') {
+            e.preventDefault();
+            saveMasterPlannerProgress();
+        }
+    }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', init);
+
+// Add sample projects for demonstration (remove in production)
+function addSampleProjects() {
+    if (!localStorage.getItem('sampleProjectsAdded')) {
+        const sampleProjects = [
+            {
+                id: '1',
+                name: 'Modern Residential Complex',
+                type: 'residential',
+                description: 'A modern residential complex with community facilities.',
+                created: '3/20/2025, 9:30:00 AM',
+                modified: '3/21/2025, 2:45:00 PM',
+                completedModules: ['vicinity-map', 'site-analysis', 'matrix-diagram'],
+                progress: 60,
+                starred: true,
+                moduleProgress: {
+                    'vicinity': 100,
+                    'site': 100,
+                    'matrix': 100,
+                    'bubble': 0,
+                    'zoning': 0
+                }
+            },
+            {
+                id: '2',
+                name: 'Downtown Office Building',
+                type: 'commercial',
+                description: 'A 12-story office building in the downtown area.',
+                created: '3/15/2025, 10:15:00 AM',
+                modified: '3/19/2025, 4:20:00 PM',
+                completedModules: ['vicinity-map', 'site-analysis'],
+                progress: 40,
+                starred: false,
+                moduleProgress: {
+                    'vicinity': 100,
+                    'site': 100,
+                    'matrix': 0,
+                    'bubble': 0,
+                    'zoning': 0
+                }
+            }
+        ];
+        
+        projects = sampleProjects;
+        saveProjects();
+        localStorage.setItem('sampleProjectsAdded', 'true');
+    }
+}
+
+// Call to add sample projects
+addSampleProjects();

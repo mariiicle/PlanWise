@@ -350,164 +350,77 @@ body {
     box-shadow: 0 5px 12px rgba(79, 109, 245, 0.4);
 }
 
-/* Planning Tools Section */
-.planning-section {
-    padding: 35px;
+/* Recent Projects Section */
+.recent-projects {
+    padding: 30px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.section-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.view-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.dropdown {
+    position: relative;
     background-color: white;
-    margin: 30px;
-    border-radius: var(--border-radius);
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-dark);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     box-shadow: var(--shadow-light);
     transition: all 0.3s ease;
 }
 
-.planning-section:hover {
+.dropdown:hover {
     box-shadow: var(--shadow-medium);
 }
 
-.planning-section h2 {
-    font-size: 22px;
-    margin-bottom: 10px;
-    color: var(--text-dark);
-    font-weight: 700;
-}
-
-.planning-section p {
+.dropdown i {
+    font-size: 12px;
     color: var(--text-gray);
-    margin-bottom: 30px;
-    font-size: 15px;
 }
 
-.planning-tools {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 25px;
-}
-
-.tool-card {
-    background-color: var(--main-content-bg);
-    border-radius: 16px;
-    padding: 25px;
-    box-shadow: var(--shadow-light);
-    border: 1px solid var(--border-color);
-    transition: all 0.3s ease;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow: hidden;
-}
-
-.tool-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-hover);
-    border-color: rgba(79, 109, 245, 0.2);
-}
-
-.tool-card::before {
-    content: '';
+.dropdown-content {
     position: absolute;
-    top: 0;
+    top: 110%;
     left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.tool-card:hover::before {
-    opacity: 1;
-}
-
-.tool-icon {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-    color: white;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    margin-bottom: 20px;
-    box-shadow: 0 6px 15px rgba(79, 109, 245, 0.2);
-    transition: all 0.3s ease;
-}
-
-.tool-card:hover .tool-icon {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(79, 109, 245, 0.3);
-}
-
-.tool-info {
-    flex: 1;
-}
-
-.tool-info h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: var(--text-dark);
-    font-weight: 600;
-}
-
-.tool-info p {
-    font-size: 14px;
-    color: var(--text-gray);
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-.start-btn {
-    background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
-    box-shadow: 0 4px 10px rgba(79, 109, 245, 0.2);
-}
-
-.start-btn:hover {
-    background: linear-gradient(90deg, var(--primary-dark), var(--primary-color));
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(79, 109, 245, 0.3);
-}
-
-/* Modal styles */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    backdrop-filter: blur(5px);
-}
-
-.modal-content {
     background-color: white;
-    border-radius: 16px;
-    width: 90%;
-    max-width: 600px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    display: flex;
-    flex-direction: column;
-    max-height: 90vh;
+    min-width: 160px;
+    border-radius: 10px;
+    box-shadow: var(--shadow-medium);
+    z-index: 100;
+    display: none;
     overflow: hidden;
-    animation: modalFadeIn 0.3s ease;
 }
 
-@keyframes modalFadeIn {
+.dropdown:hover .dropdown-content {
+    display: block;
+    animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-30px);
+        transform: translateY(-10px);
     }
     to {
         opacity: 1;
@@ -515,146 +428,202 @@ body {
     }
 }
 
-.modal-header {
-    padding: 20px 25px;
-    background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.modal-header h3 {
-    margin: 0;
-    font-size: 20px;
-    font-weight: 600;
-}
-
-.close-modal {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    opacity: 0.8;
+.dropdown-item {
+    padding: 12px 15px;
     transition: all 0.2s ease;
 }
 
-.close-modal:hover {
-    opacity: 1;
-    transform: scale(1.1);
+.dropdown-item:hover {
+    background-color: var(--main-content-bg);
+    color: var(--primary-color);
 }
 
-.modal-body {
-    padding: 25px;
-    overflow-y: auto;
+.view-btn {
+    width: 38px;
+    height: 38px;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-gray);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-light);
 }
 
-.modal-footer {
-    padding: 20px 25px;
-    background-color: #f8f9fc;
+.view-btn:hover, .view-btn.active {
+    color: var(--primary-color);
+    box-shadow: var(--shadow-medium);
+}
+
+.view-btn.active {
+    background: linear-gradient(135deg, rgba(79, 109, 245, 0.1), rgba(79, 109, 245, 0.2));
+}
+
+.activity-header {
     display: flex;
     justify-content: space-between;
-    border-top: 1px solid #eaecf2;
+    align-items: center;
+    margin: 30px 0 20px;
 }
 
-.form-group {
-    margin-bottom: 20px;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    color: var(--text-dark);
+.activity-header h3 {
+    font-size: 18px;
     font-weight: 600;
-    font-size: 15px;
+    color: var(--text-dark);
 }
 
-.form-group input, .form-group textarea, .form-group select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #e0e6ed;
+.activity-period {
+    display: flex;
+    align-items: center;
+    background-color: white;
     border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+}
+
+.period-btn {
+    padding: 8px 16px;
+    background: none;
+    border: none;
     font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
     transition: all 0.3s ease;
+    color: var(--text-gray);
 }
 
-.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
-    outline: none;
-    border-color: var(--primary-light);
-    box-shadow: 0 0 0 3px rgba(79, 109, 245, 0.1);
+.period-btn.active {
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+    color: white;
 }
 
-.modules-checklist {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+.period-btn:hover:not(.active) {
+    color: var(--primary-color);
+}
+/* Additional CSS for the Recycle Bin page */
+.bin-info {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 20px 0;
+}
+
+.bin-info p {
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.bin-actions {
+    display: flex;
     gap: 12px;
-    margin-top: 8px;
 }
 
-.module-check {
+.bin-action-btn {
     display: flex;
     align-items: center;
     gap: 8px;
-}
-
-.save-btn {
-    background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
-    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
     border: none;
-    padding: 10px 20px;
-    border-radius: 10px;
+    font-weight: 500;
     cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 10px rgba(79, 109, 245, 0.2);
-}
-
-.save-btn:hover {
-    background: linear-gradient(90deg, var(--primary-dark), var(--primary-color));
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(79, 109, 245, 0.3);
-}
-
-.delete-btn {
-    background-color: #ff5252;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: 600;
+    background-color: #f0f0f0;
+    color: #333;
     transition: all 0.3s ease;
 }
 
-.delete-btn:hover {
-    background-color: #ff3838;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(255, 82, 82, 0.3);
+.bin-action-btn:hover {
+    background-color: #e0e0e0;
 }
 
-/* Responsive styles */
-@media (max-width: 768px) {
-    .app-container {
-        flex-direction: column;
-    }
-    
-    .sidebar {
-        width: 100%;
-        height: auto;
-        padding-bottom: 0;
-    }
-    
-    .planning-tools {
-        grid-template-columns: 1fr;
-    }
-    
-    .search-bar {
-        width: 100%;
-        max-width: 300px;
-    }
-    
-    .modules-checklist {
-        grid-template-columns: 1fr;
-    }
+.bin-action-btn.danger {
+    background-color: #fff0f0;
+    color: #ff3a3a;
+}
+
+.bin-action-btn.danger:hover {
+    background-color: #ffe0e0;
+}
+
+.projects-list .project-card {
+    opacity: 0.8;
+    position: relative;
+}
+
+.projects-list .project-card:hover {
+    opacity: 1;
+}
+
+.projects-list .project-card .deletion-date {
+    font-size: 12px;
+    color: #888;
+    margin-top: 4px;
+}
+
+.projects-list .project-card .project-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 6px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.projects-list .project-card:hover .project-actions {
+    opacity: 1;
+}
+
+.projects-list .project-card .project-action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.projects-list .project-card .project-action-btn.restore {
+    color: #2a84ff;
+}
+
+.projects-list .project-card .project-action-btn.delete {
+    color: #ff3a3a;
+}
+
+.projects-list .project-card .project-action-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Empty state */
+.empty-bin-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 0;
+    text-align: center;
+    color: #888;
+}
+
+.empty-bin-state i {
+    font-size: 64px;
+    margin-bottom: 16px;
+    color: #ccc;
+}
+
+.empty-bin-state h3 {
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.empty-bin-state p {
+    max-width: 400px;
 }

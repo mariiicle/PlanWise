@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlanWise</title>
+    <title>PlanWise - Architecture Planning</title>
     <link rel="stylesheet" href="try.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
@@ -13,23 +13,23 @@
         <div class="sidebar">
             <div class="logo-container">
                 <div class="logo">
-                    <i class="fas fa-file-alt"></i>
+                    <i class="fas fa-drafting-compass"></i>
                 </div>
                 <div class="logo-text">PlanWise</div>
                 <div class="plan-badge">Free</div>
             </div>
             
             <div class="user-profile">
-                <div class="avatar">F</div>
+                <div class="avatar">A</div>
                 <div class="user-info">
-                    <div class="user-name">My Files</div>
+                    <div class="user-name">My Projects</div>
                     <i class="fas fa-chevron-down"></i>
                 </div>
             </div>
             
             <button class="new-btn">
                 <i class="fas fa-plus"></i>
-                <span>New</span>
+                <span>New Project</span>
             </button>
             
             <div class="nav-menu">
@@ -45,12 +45,8 @@
                     <i class="fas fa-star"></i>
                     <span>Starred</span>
                 </div>
-                <div class="nav-item">
-                    <i class="fas fa-th-large"></i>
-                    <span>Templates</span>
-                </div>
                 <div class="nav-item projects">
-                    <i class="fas fa-folder"></i>
+                    <i class="fas fa-building"></i>
                     <span>Projects</span>
                     <i class="fas fa-plus add-project"></i>
                 </div>
@@ -61,8 +57,8 @@
             </div>
             
             <div class="upgrade-info">
-                <div class="plan-name">PlanWise Premium</div>
-                <div class="billing-info">Billed annually</div>
+                <div class="plan-name">PlanWise Pro</div>
+                <div class="billing-info">Architect Edition</div>
                 <div class="discount-badge">Save 48%</div>
                 <button class="upgrade-btn">
                     <i class="fas fa-crown"></i>
@@ -77,7 +73,7 @@
             <div class="top-bar">
                 <div class="search-bar">
                     <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Search for files...">
+                    <input type="text" placeholder="Search projects...">
                 </div>
                 <div class="user-controls">
                     <button class="icon-btn">
@@ -90,104 +86,121 @@
                     <button class="icon-btn">
                         <i class="fas fa-bell"></i>
                     </button>
-                    <div class="user-avatar">M</div>
+                    <div class="user-avatar">A</div>
                 </div>
             </div>
             
-            <!-- Quick action templates -->
-            <div class="templates-section">
-                <div class="template-card">
-                    <div class="template-icon">
-                        <i class="fas fa-sitemap"></i>
-                    </div>
-                    <div class="template-info">
-                        <h3>Site Analysis</h3>
-                        <p>Generate site reports instantly.</p>
-                    </div>
-                </div>
+            <!-- Architecture Planning Tools -->
+            <div class="planning-section">
+                <h2>Architectural Planning Tools</h2>
+                <p>Start your design process with these essential planning modules</p>
                 
-                <div class="template-card">
-                    <div class="template-icon">
-                        <i class="fas fa-project-diagram"></i>
-                    </div>
-                    <div class="template-info">
-                        <h3>Bubble Diagram</h3>
-                        <p>Map out spatial flow easily.</p>
-                    </div>
-                </div>
-                
-                <div class="template-card">
-                    <div class="template-icon">
-                        <i class="fas fa-object-group"></i>
-                    </div>
-                    <div class="template-info">
-                        <h3>Zoning</h3>
-                        <p>Define functional spaces quickly.</p>
-                    </div>
-                </div>
-                
-                <div class="template-card">
-                    <div class="template-icon">
-                        <i class="fas fa-network-wired"></i>
-                    </div>
-                    <div class="template-info">
-                        <h3>Matrix Diagram</h3>
-                        <p>Visualize relationships effectively.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Recent documents section -->
-            <div class="recent-section">
-                <div class="section-header">
-                    <h2>Recent Documents</h2>
-                    <div class="view-controls">
-                        <div class="dropdown">
-                            <span>All</span>
-                            <i class="fas fa-chevron-down"></i>
+                <div class="planning-tools">
+                    <!-- NEW INTEGRATED TOOL -->
+                    <div class="tool-card featured-tool">
+                        <div class="tool-icon">
+                            <i class="fas fa-layer-group"></i>
                         </div>
-                        <div class="dropdown">
-                            <span>All files</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <button class="view-btn active">
-                            <i class="fas fa-th"></i>
-                        </button>
-                        <button class="view-btn">
-                            <i class="fas fa-list"></i>
-                        </button>
+                        <div class="tool-info">
+                            <h3>All-in-One Planning Tool</h3>
+                            <p>Integrate and manage all planning tools in a unified workspace for a seamless and efficient project development process.</p>
+                        </div>                        
+                        <button class="start-btn featured-btn">Launch</button>
                     </div>
-                </div>
-                
-                <div class="files-grid">
-                    <!-- Files will be dynamically added here -->
-                    <div id="file-container" class="files-grid"></div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <div class="tool-info">
+                            <h3>Vicinity Map</h3>
+                            <p>Create contextual maps showing the site's surroundings and connections.</p>
+                        </div>
+                        <button class="start-btn">Start</button>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-mountain"></i>
+                        </div>
+                        <div class="tool-info">
+                            <h3>Site Analysis</h3>
+                            <p>Analyze sun path and wind path conditions.</p>
+                        </div>
+                        <button class="start-btn">Start</button>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-project-diagram"></i>
+                        </div>
+                        <div class="tool-info">
+                            <h3>Matrix Diagram</h3>
+                            <p>Create relationship matrices for spatial programming requirements.</p>
+                        </div>
+                        <button class="start-btn">Start</button>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-chart-bubble"></i>
+                        </div>
+                        <div class="tool-info">
+                            <h3>Bubble Diagram</h3>
+                            <p>Visualize spatial relationships and circulation patterns.</p>
+                        </div>
+                        <button class="start-btn">Start</button>
+                    </div>
+                    
+                    <div class="tool-card">
+                        <div class="tool-icon">
+                            <i class="fas fa-object-group"></i>
+                        </div>
+                        <div class="tool-info">
+                            <h3>Zoning</h3>
+                            <p>Apply color coding to distinguish room privacy levels.</p>
+                        </div>                                                                                                              
+                        <button class="start-btn">Start</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Template for file preview modal -->
     <div id="fileModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 id="modal-title">File Details</h3>
+                <h3 id="modal-title">Project Details</h3>
                 <button class="close-modal">&times;</button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="file-name">File Name:</label>
+                    <label for="file-name">Project Name:</label>
                     <input type="text" id="file-name">
                 </div>
                 <div class="form-group">
-                    <label for="file-content">Content:</label>
-                    <textarea id="file-content" rows="10"></textarea>
+                    <label for="project-type">Project Type:</label>
+                    <select id="project-type">
+                        <option value="residential">Residential</option>
+                        <option value="commercial">Commercial</option>
+                        <option value="mixed-use">Custom</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="file-content">Description:</label>
+                    <textarea id="file-content" rows="5"></textarea>
                 </div>
                 <div class="form-group">
                     <label>Created: <span id="created-date"></span></label>
                 </div>
                 <div class="form-group">
                     <label>Modified: <span id="modified-date"></span></label>
+                </div>
+                <div class="form-group">
+                    <label>Project Modules:</label>
+                    <div class="modules-info">
+                        <p>Progress is tracked automatically when you use the tools in the Master Planner.</p>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -196,6 +209,177 @@
             </div>
         </div>
     </div>
+    
+    <!-- NEW: Master Planner Modal -->
+    <div id="masterPlannerModal" class="modal">
+        <div class="modal-content master-planner-modal">
+            <div class="modal-header">
+                <h3>Master Planner</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="planner-tabs">
+                    <button class="tab-btn active" data-tab="overview">Overview</button>
+                    <button class="tab-btn" data-tab="vicinity">Vicinity Map</button>
+                    <button class="tab-btn" data-tab="site">Site Analysis</button>
+                    <button class="tab-btn" data-tab="matrix">Matrix Diagram</button>
+                    <button class="tab-btn" data-tab="bubble">Bubble Diagram</button>
+                    <button class="tab-btn" data-tab="zoning">Zoning</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="overview" class="tab-pane active">
+                        <div class="overview-header">
+                            <div class="project-info">
+                                <h3>Project: <span id="project-name">Untitled Project</span></h3>
+                                <p>Type: <span id="project-category">Residential</span></p>
+                            </div>
+                            <div class="progress-circle">
+                                <div class="progress-text">0%</div>
+                                <div class="progress-label">Complete</div>
+                            </div>
+                        </div>
+                        
+                        <div class="modules-progress">
+                            <h4>Module Progress</h4>
+                            <div class="module-progress-item">
+                                <div class="module-name">Vicinity Map</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <div class="module-status">Not Started</div>
+                            </div>
+                            <div class="module-progress-item">
+                                <div class="module-name">Site Analysis</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <div class="module-status">Not Started</div>
+                            </div>
+                            <div class="module-progress-item">
+                                <div class="module-name">Matrix Diagram</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <div class="module-status">Not Started</div>
+                            </div>
+                            <div class="module-progress-item">
+                                <div class="module-name">Bubble Diagram</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <div class="module-status">Not Started</div>
+                            </div>
+                            <div class="module-progress-item">
+                                <div class="module-name">Zoning</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <div class="module-status">Not Started</div>
+                            </div>
+                        </div>
+                        
+                        <div class="suggested-workflow">
+                            <h4>Suggested Workflow</h4>
+                            <p>For best results, complete these modules in the recommended sequence:</p>
+                            <ol class="workflow-steps">
+                                <li><a href="#" class="workflow-link" data-tab="vicinity">Vicinity Map</a> - Establish context</li>
+                                <li><a href="#" class="workflow-link" data-tab="site">Site Analysis</a> - Understand environmental factors</li>
+                                <li><a href="#" class="workflow-link" data-tab="matrix">Matrix Diagram</a> - Define spatial relationships</li>
+                                <li><a href="#" class="workflow-link" data-tab="bubble">Bubble Diagram</a> - Visualize relationships</li>
+                                <li><a href="#" class="workflow-link" data-tab="zoning">Zoning</a> - Establish privacy/access zones</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div id="vicinity" class="tab-pane">
+                        <h3>Vicinity Map</h3>
+                        <p>Create a contextual map showing the site's surroundings and connections.</p>
+                        <div class="tool-interface">
+                            <div class="vicinity-controls">
+                                <button class="tool-btn"><i class="fas fa-map-marker-alt"></i> Place Marker</button>
+                                <button class="tool-btn"><i class="fas fa-road"></i> Draw Road</button>
+                                <button class="tool-btn"><i class="fas fa-tree"></i> Add Landmark</button>
+                                <button class="tool-btn"><i class="fas fa-compass"></i> Set North</button>
+                            </div>
+                            <div class="map-canvas">
+                                <div class="map-placeholder">Map Canvas Area</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="site" class="tab-pane">
+                        <h3>Site Analysis</h3>
+                        <p>Analyze sun path and wind path conditions.</p>
+                        <div class="tool-interface">
+                            <div class="site-controls">
+                                <button class="tool-btn"><i class="fas fa-sun"></i> Sun Path</button>
+                                <button class="tool-btn"><i class="fas fa-wind"></i> Wind Direction</button>
+                                <button class="tool-btn"><i class="fas fa-mountain"></i> Topography</button>
+                                <button class="tool-btn"><i class="fas fa-tree"></i> Vegetation</button>
+                            </div>
+                            <div class="site-canvas">
+                                <div class="site-placeholder">Site Analysis Canvas</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="matrix" class="tab-pane">
+                        <h3>Matrix Diagram</h3>
+                        <p>Create relationship matrices for spatial programming requirements.</p>
+                        <div class="tool-interface">
+                            <div class="matrix-controls">
+                                <button class="tool-btn"><i class="fas fa-plus-square"></i> Add Space</button>
+                                <button class="tool-btn"><i class="fas fa-link"></i> Define Relationship</button>
+                                <button class="tool-btn"><i class="fas fa-sliders-h"></i> Adjust Priority</button>
+                                <button class="tool-btn"><i class="fas fa-table"></i> Generate Matrix</button>
+                            </div>
+                            <div class="matrix-canvas">
+                                <div class="matrix-placeholder">Matrix Diagram Area</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="bubble" class="tab-pane">
+                        <h3>Bubble Diagram</h3>
+                        <p>Visualize spatial relationships and circulation patterns.</p>
+                        <div class="tool-interface">
+                            <div class="bubble-controls">
+                                <button class="tool-btn"><i class="fas fa-circle"></i> Add Space</button>
+                                <button class="tool-btn"><i class="fas fa-arrows-alt"></i> Move/Resize</button>
+                                <button class="tool-btn"><i class="fas fa-link"></i> Connect Spaces</button>
+                                <button class="tool-btn"><i class="fas fa-paint-brush"></i> Color Code</button>
+                            </div>
+                            <div class="bubble-canvas">
+                                <div class="bubble-placeholder">Bubble Diagram Canvas</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="zoning" class="tab-pane">
+                        <h3>Zoning</h3>
+                        <p>Apply color coding to distinguish room privacy levels.</p>
+                        <div class="tool-interface">
+                            <div class="zoning-controls">
+                                <button class="tool-btn"><i class="fas fa-draw-polygon"></i> Draw Zone</button>
+                                <button class="tool-btn"><i class="fas fa-paint-brush"></i> Set Privacy Level</button>
+                                <button class="tool-btn"><i class="fas fa-tags"></i> Label Zone</button>
+                                <button class="tool-btn"><i class="fas fa-layer-group"></i> Manage Layers</button>
+                            </div>
+                            <div class="zoning-canvas">
+                                <div class="zoning-placeholder">Zoning Canvas</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="action-btn export-btn"><i class="fas fa-file-export"></i> Export</button>
+                <button class="action-btn save-btn"><i class="fas fa-save"></i> Save Progress</button>
+            </div>
+        </div>
+    </div>
+
     
     <script src="try.js"></script>
 </body>
