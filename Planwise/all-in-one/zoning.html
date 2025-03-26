@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanWise - Zoning</title>
+    <link rel="stylesheet" href="zoning.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Navigation Bar -->
+        <header class="top-nav">
+            <div class="left-controls">
+                <div class="app-branding">
+                    <div class="app-logo">Z</div>
+                    <div class="app-title">Zoning</div>
+                </div>
+                <div class="nav-divider"></div>
+                <div class="doc-title">
+                    <input type="text" value="Untitled Project" class="title-input">
+                    <div class="doc-status">
+                        <span class="status-icon"><i class="fas fa-check-circle"></i></span>
+                        <span class="status-text">Saved</span>
+                    </div>
+                </div>
+            </div>
+            <div class="center-controls">
+                <div class="history-controls">
+                    <button class="history-btn" title="Undo"><i class="fas fa-undo"></i></button>
+                    <button class="history-btn" title="Redo"><i class="fas fa-redo"></i></button>
+                </div>
+            </div>
+            <div class="right-controls">
+                <button class="action-btn btn-chart" title="Analytics"><i class="fas fa-chart-bar"></i></button>
+                <button class="action-btn btn-layers" title="Layers"><i class="fas fa-layer-group"></i></button>
+                <div class="dropdown">
+                    <button class="action-btn btn-export" title="Export"><i class="fas fa-file-export"></i></button>
+                </div>
+                <button class="primary-btn share-btn">
+                    <i class="fas fa-share-alt"></i>
+                    <span>Download</span>
+                </button>
+                <div class="user-profile">
+                    <div class="user-avatar">A</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Secondary Toolbar -->
+        <div class="tool-bar">
+            <div class="left-tools">
+                <div class="tool-group">
+                    <button class="btn-tool active">
+                        <i class="fas fa-draw-polygon"></i>
+                        <span>Space Select</span>
+                    </button>
+                    <button class="btn-tool">
+                        <i class="fas fa-vector-square"></i>
+                        <span>Create Space</span>
+                    </button>
+                </div>
+            </div>
+            <div class="right-tools">
+                <div class="view-options">
+                    <button class="view-btn" title="Grid View"><i class="fas fa-th"></i></button>
+                    <button class="view-btn active" title="Layout View"><i class="fas fa-map"></i></button>
+                    <button class="view-btn" title="3D View"><i class="fas fa-cube"></i></button>
+                </div>
+                <button class="btn-tool">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="map-area">
+                <div class="map-header">
+                    <div>
+                        <h2>Space Privacy Zoning</h2>
+                        <p class="map-description">Space privacy and connection visualization</p>
+                    </div>
+                    <div class="map-actions">
+                        <button class="map-action-btn"><i class="fas fa-expand-alt"></i></button>
+                        <button class="map-action-btn"><i class="fas fa-download"></i></button>
+                    </div>
+                </div>
+                <div class="map-canvas">
+                    <!-- Space Layout would go here -->
+                </div>
+                
+                <div class="map-controls">
+                    <div class="nav-controls">
+                        <button class="btn-notes">
+                            <i class="fas fa-sticky-note"></i>
+                            <span>Notes</span>
+                        </button>
+                        <button class="btn-previous">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Previous</span>
+                        </button>
+                        <button class="btn-next">
+                            <span>Next</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar-tools">
+                <!-- Space Privacy Categories -->
+                <div class="tool-section">
+                    <div class="section-title">Space Privacy Levels</div>
+                    <div class="adjacency-description">Define space privacy and connectivity</div>
+                </div>
+                
+                <!-- Space Management -->
+                <div class="tool-section">
+                    <div class="section-title">Defined Spaces</div>
+                    <div class="spaces-list">
+                        <div class="space-item">
+                            <span class="space-name">Private</span>
+                            <div class="space-actions">
+                                <button class="space-edit-btn"><i class="fas fa-edit"></i></button>
+                                <button class="space-delete-btn"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="space-item">
+                            <span class="space-name">Semi-Public</span>
+                            <div class="space-actions">
+                                <button class="space-edit-btn"><i class="fas fa-edit"></i></button>
+                                <button class="space-delete-btn"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                        <div class="space-item">
+                            <span class="space-name">Public</span>
+                            <div class="space-actions">
+                                <button class="space-edit-btn"><i class="fas fa-edit"></i></button>
+                                <button class="space-delete-btn"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Space Connectivity and Privacy Regulations -->
+                <div class="tool-section">
+                    <div class="section-title">Space Connectivity Rules</div>
+                    <div class="connection-options">
+                        <div class="connection-setting">
+                            <label for="privacy-transition">Privacy Transition:</label>
+                            <select id="privacy-transition" class="connection-select">
+                                <option value="strict">Strict Separation</option>
+                                <option value="buffer">Buffer Zones</option>
+                                <option value="flexible">Flexible Transition</option>
+                            </select>
+                        </div>
+                        <div class="connection-setting">
+                            <label for="connection-type">Connection Type:</label>
+                            <select id="connection-type" class="connection-select">
+                                <option value="direct">Direct Access</option>
+                                <option value="indirect">Indirect Access</option>
+                                <option value="restricted">Restricted Access</option>
+                            </select>
+                        </div>
+                        <div class="connection-setting">
+                            <label for="visibility-level">Visibility Level:</label>
+                            <select id="visibility-level" class="connection-select">
+                                <option value="open">Open</option>
+                                <option value="partial">Partially Screened</option>
+                                <option value="closed">Closed</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="zoning.js"></script>
+</body>
+</html>

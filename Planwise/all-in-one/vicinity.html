@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanWise - Vicinity Map Tool</title>
+    <link rel="stylesheet" href="vicinity.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Top Navigation Bar -->
+        <header class="top-nav">
+            <div class="left-controls">
+                <div class="app-branding">
+                    <div class="app-logo">V</div>
+                    <div class="app-title">Vicinity Map</div>
+                </div>
+                <div class="nav-divider"></div>
+                <div class="doc-title">
+                    <input type="text" value="Untitled Project" class="title-input">
+                    <div class="doc-status">
+                        <span class="status-icon"><i class="fas fa-check-circle"></i></span>
+                        <span class="status-text">Saved</span>
+                    </div>
+                </div>
+            </div>
+            <div class="center-controls">
+                <div class="history-controls">
+                    <button class="history-btn" title="Undo"><i class="fas fa-undo"></i></button>
+                    <button class="history-btn" title="Redo"><i class="fas fa-redo"></i></button>
+                </div>
+            </div>
+            <div class="right-controls">
+                <button class="action-btn btn-chart" title="Analytics"><i class="fas fa-chart-bar"></i></button>
+                <button class="action-btn btn-layers" title="Layers"><i class="fas fa-layer-group"></i></button>
+                <div class="dropdown">
+                    <button class="action-btn btn-export" title="Export"><i class="fas fa-file-export"></i></button>
+                </div>
+                <button class="primary-btn share-btn">
+                    <i class="fas fa-share-alt"></i>
+                    <span>Download</span>
+                </button>
+                <div class="user-profile">
+                    <div class="user-avatar">A</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Secondary Toolbar -->
+        <div class="tool-bar">
+            <div class="left-tools">
+                <div class="tool-group">
+                    <button class="btn-tool active">
+                        <i class="fas fa-mouse-pointer"></i>
+                        <span>Select</span>
+                    </button>
+                    <button class="btn-tool">
+                        <i class="fas fa-hand-paper"></i>
+                        <span>Pan</span>
+                    </button>
+                    <button class="btn-tool">
+                        <i class="fas fa-search-plus"></i>
+                        <span>Zoom</span>
+                    </button>
+                </div>
+            </div>
+            <div class="right-tools">
+                <div class="view-options">
+                    <button class="view-btn" title="Grid View"><i class="fas fa-th"></i></button>
+                    <button class="view-btn active" title="Map View"><i class="fas fa-map"></i></button>
+                    <button class="view-btn" title="3D View"><i class="fas fa-cube"></i></button>
+                </div>
+                <button class="btn-tool">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="map-area">
+                <div class="map-header">
+                    <div>
+                        <h2>Vicinity Map</h2>
+                        <p class="map-description">Urban planning visualization</p>
+                    </div>
+                    <div class="map-actions">
+                        <button class="map-action-btn"><i class="fas fa-expand-alt"></i></button>
+                        <button class="map-action-btn"><i class="fas fa-download"></i></button>
+                    </div>
+                </div>
+                <div class="map-canvas">
+                    <!-- Map content will be drawn here -->
+                    <div class="green-area"></div>
+                    <div class="compass">
+                        <div class="north">N</div>
+                        <div class="east">E</div>
+                        <div class="south">S</div>
+                        <div class="west">W</div>
+                        <div class="compass-center"></div>
+                    </div>
+                </div>
+                
+                <div class="map-controls">
+                    <div class="zoom-controls">
+                        <button class="zoom-btn"><i class="fas fa-minus"></i></button>
+                        <span class="zoom-level">100%</span>
+                        <button class="zoom-btn"><i class="fas fa-plus"></i></button>
+                    </div>
+                    <div class="nav-controls">
+                        <button class="btn-notes">
+                            <i class="fas fa-sticky-note"></i>
+                            <span>Notes</span>
+                        </button>
+                        <button class="btn-previous">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Previous</span>
+                        </button>
+                        <button class="btn-next">
+                            <span>Next</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sidebar-tools">
+                <!-- Site Placement -->
+                <div class="tool-section">
+                    <div class="section-title">Site Placement</div>
+                    <div class="site-preview">
+                        <div class="site-marker">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Your Site</span>
+                        </div>
+                    </div>
+                    <div class="site-options">
+                        <button class="site-option-btn">
+                            <i class="fas fa-crosshairs"></i>
+                            <span>Place on Map</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Tools Panel -->
+                <div class="tool-section">
+                    <div class="section-title">Design Elements</div>
+                    <div class="tool-buttons">
+                        <div class="tool-btn-container">
+                            <div class="tool-icon road-icon">
+                                <i class="fas fa-road"></i>
+                            </div>
+                            <button class="tool-btn">Road</button>
+                        </div>
+                        <div class="tool-btn-container">
+                            <div class="tool-icon residential-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <button class="tool-btn">Residential</button>
+                        </div>
+                        <div class="tool-btn-container">
+                            <div class="tool-icon industrial-icon">
+                                <i class="fas fa-industry"></i>
+                            </div>
+                            <button class="tool-btn">Industrial</button>
+                        </div>
+                        <div class="tool-btn-container">
+                            <div class="tool-icon tree-icon">
+                                <i class="fas fa-tree"></i>
+                            </div>
+                            <button class="tool-btn">Tree</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Add Options -->
+                <div class="tool-section">
+                    <div class="section-title">Annotations</div>
+                    <button class="add-button">
+                        <div class="plus-icon"><i class="fas fa-plus"></i></div>
+                        <span>Add name</span>
+                    </button>
+                    <button class="add-button">
+                        <div class="plus-icon"><i class="fas fa-plus"></i></div>
+                        <span>Add notes</span>
+                        <div class="lightbulb-icon"><i class="fas fa-lightbulb"></i></div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
