@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanWise - Recycle Bin</title>
+    <link rel="stylesheet" href="css/recycle-bin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+            
+            <!-- Recycle Bin Section -->
+            <div class="recent-projects">
+                <div class="section-header">
+                    <h2>Recycle Bin</h2>
+                    <div class="view-controls">
+                        <div class="dropdown">
+                            <span>Date deleted</span>
+                            <i class="fas fa-chevron-down"></i>
+                            <div class="dropdown-content">
+                                <div class="dropdown-item" data-value="deleted">Date deleted</div>
+                                <div class="dropdown-item" data-value="modified">Last modified</div>
+                                <div class="dropdown-item" data-value="created">Date created</div>
+                                <div class="dropdown-item" data-value="name">Name</div>
+                                <div class="dropdown-item" data-value="type">Type</div>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <span>All types</span>
+                            <i class="fas fa-chevron-down"></i>
+                            <div class="dropdown-content">
+                                <div class="dropdown-item" data-value="all">All types</div>
+                                <div class="dropdown-item" data-value="vicinity">All-in-One</div>
+                                <div class="dropdown-item" data-value="vicinity">Vicinity Map</div>
+                                <div class="dropdown-item" data-value="site">Site Analysis</div>
+                                <div class="dropdown-item" data-value="matrix">Matrix Diagram</div>
+                                <div class="dropdown-item" data-value="bubble">Bubble Diagram</div>
+                                <div class="dropdown-item" data-value="zoning">Zoning</div>
+                            </div>
+                        </div>
+                        <button class="view-btn active">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="activity-header">
+                    <h3>Deleted Projects</h3>
+                    <div class="activity-period">
+                        <button class="period-btn active" data-period="week">This week</button>
+                        <button class="period-btn" data-period="month">This month</button>
+                        <button class="period-btn" data-period="year">This year</button>
+                    </div>
+                </div>
+                
+                <div class="bin-info">
+                    <p>Items in the Recycle Bin will be automatically deleted after 30 days.</p>
+                    <div class="bin-actions">
+                        <button class="bin-action-btn" id="restore-all-btn">
+                            <i class="fas fa-trash-restore"></i>
+                            <span>Restore All</span>
+                        </button>
+                        <button class="bin-action-btn danger" id="empty-bin-btn">
+                            <i class="fas fa-trash-alt"></i>
+                            <span>Empty Bin</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="projects-list" id="deletedProjectsList">
+                    <!-- Deleted projects will be loaded dynamically via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Restore Confirmation Modal -->
+    <div class="modal" id="restoreConfirmModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Restore Project</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to restore "<span id="restore-project-name"></span>"?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="cancel-btn">Cancel</button>
+                <button id="confirm-restore-btn" class="save-btn">Restore</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Empty Bin Confirmation Modal -->
+    <div class="modal" id="emptyBinConfirmModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Empty Recycle Bin</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to permanently delete all items in the Recycle Bin? This action cannot be undone.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="cancel-btn">Cancel</button>
+                <button id="confirm-empty-bin-btn" class="delete-btn">Empty Bin</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="recycle-bin.js"></script>
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanWise - Starred Projects</title>
+    <link rel="stylesheet" href="css/starred.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+
+            <!-- Starred documents section -->
+            <div class="starred-section">
+                <div class="section-header">
+                    <h2>Starred Architectural Projects</h2>
+                    <div class="view-controls">
+                        <div class="dropdown">
+                            <span>Last modified</span>
+                            <i class="fas fa-chevron-down"></i>
+                            <div class="dropdown-content">
+                                <div class="dropdown-item" data-value="modified">Last modified</div>
+                                <div class="dropdown-item" data-value="created">Date created</div>
+                                <div class="dropdown-item" data-value="name">Name</div>
+                                <div class="dropdown-item" data-value="type">Project type</div>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <span>All types</span>
+                            <i class="fas fa-chevron-down"></i>
+                            <div class="dropdown-content">
+                                <div class="dropdown-item" data-value="all">All types</div>
+                                <div class="dropdown-item" data-value="all">All-in-One</div>
+                                <div class="dropdown-item" data-value="vicinity">Vicinity Map</div>
+                                <div class="dropdown-item" data-value="site">Site Analysis</div>
+                                <div class="dropdown-item" data-value="matrix">Matrix Diagram</div>
+                                <div class="dropdown-item" data-value="bubble">Bubble Diagram</div>
+                                <div class="dropdown-item" data-value="zoning">Zoning</div>
+                            </div>
+                        </div>
+                        <button class="view-btn active">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="files-grid" id="starred-files">
+                    <!-- Files will be dynamically added here by JavaScript -->
+                </div>
+                
+                <div class="empty-state" id="empty-state">
+                    <div class="empty-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>No starred projects yet</h3>
+                    <p>Star your important architectural projects for quick access and keep your most valuable designs organized</p>
+                    <button class="browse-btn">
+                        <i class="fas fa-search"></i>
+                        <span>Browse Projects</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Project Modal -->
+    <div class="modal" id="newProjectModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Project</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="projectName">Project Name:</label>
+                    <input type="text" id="projectName">
+                </div>
+                <div class="form-group">
+                    <label for="projectType">Project Type:</label>
+                    <select id="projectType">
+                        <option value="residential">Residential</option>
+                        <option value="commercial">Commercial</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="projectDescription">Description (optional):</label>
+                    <textarea id="projectDescription" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Project Modules:</label>
+                    <div class="modules-checklist">
+                        <div class="module-check">
+                            <input type="checkbox" id="vicinity-map">
+                            <label for="vicinity-map">Vicinity Map</label>
+                        </div>
+                        <div class="module-check">
+                            <input type="checkbox" id="site-analysis">
+                            <label for="site-analysis">Site Analysis</label>
+                        </div>
+                        <div class="module-check">
+                            <input type="checkbox" id="matrix-diagram">
+                            <label for="matrix-diagram">Matrix Diagram</label>
+                        </div>
+                        <div class="module-check">
+                            <input type="checkbox" id="bubble-diagram">
+                            <label for="bubble-diagram">Bubble Diagram</label>
+                        </div>
+                        <div class="module-check">
+                            <input type="checkbox" id="zoning">
+                            <label for="zoning">Zoning</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancel-btn" class="delete-btn">Cancel</button>
+                <button id="create-btn" class="save-btn">Create Project</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project details modal -->
+    <div class="modal" id="projectDetailsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Project Details</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="file-name">Project Name:</label>
+                    <input type="text" id="file-name">
+                </div>
+                <div class="form-group">
+                    <label for="project-type">Project Type:</label>
+                    <select id="project-type">
+                        <option value="residential">Residential</option>
+                        <option value="commercial">Commercial</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="file-content">Description:</label>
+                    <textarea id="file-content" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Created: <span id="created-date"></span></label>
+                </div>
+                <div class="form-group">
+                    <label>Modified: <span id="modified-date"></span></label>
+                </div>
+                <div class="form-group">
+                    <label>Completed Modules:</label>
+                    <div class="modules-checklist">
+                        <div class="module-check">
+                            <input type="checkbox" id="vicinity-map">
+                            <label for="vicinity-map">Vicinity Map</label>
+                        </div>
+                        <div class="module-check">
+                            <input type="checkbox" id="site-analysis">
+                            <label for="site-analysis">Site Analysis</label>
+                        </div>
+                        <div class="module-check">
+                            <input type="checkbox" id="matrix-diagram">
+                            <label for="matrix-diagram">Matrix Diagram</label>
+                        </div>
+                        <div class="module-check">
+                            <input type="checkbox" id="bubble-diagram">
+                            <label for="bubble-diagram">Bubble Diagram</label>
+                        </div>
+                        <div class="module-check">
+                            <input type="checkbox" id="zoning">
+                            <label for="zoning">Zoning</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="starred-checkbox" checked>
+                        <span class="checkmark"></span>
+                        Star project
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="delete-btn" class="delete-btn">Delete</button>
+                <button id="save-btn" class="save-btn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Master Planner Modal -->
+    <div class="modal" id="masterPlannerModal">
+        <div class="modal-content master-planner-modal">
+            <div class="modal-header">
+                <h3>Master Planner</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="planner-tabs">
+                    <button class="tab-btn active" data-tab="overview">Overview</button>
+                    <button class="tab-btn" data-tab="vicinity">Vicinity Map</button>
+                    <button class="tab-btn" data-tab="site">Site Analysis</button>
+                    <button class="tab-btn" data-tab="matrix">Matrix Diagram</button>
+                    <button class="tab-btn" data-tab="bubble">Bubble Diagram</button>
+                    <button class="tab-btn" data-tab="zoning">Zoning</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="overview" class="tab-pane active">
+                        <div class="overview-header">
+                            <div class="project-info">
+                                <h3>Project: <span id="project-name">Untitled Project</span></h3>
+                                <p>Type: <span id="project-category">Residential</span></p>
+                            </div>
+                            <div class="progress-circle">
+                                <div class="progress-text">0%</div>
+                                <div class="progress-label">Complete</div>
+                            </div>
+                        </div>
+                        
+                        <div class="modules-progress">
+                            <h4>Module Progress</h4>
+                            <div class="module-progress-item">
+                                <div class="module-name">Vicinity Map</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <div class="module-status">Not Started</div>
+                            </div>
+                            <div class="module-progress-item">
+                                <div class="module-name">Site Analysis</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <div class="module-status">Not Started</div>
+                            </div>
+                            <div class="module-progress-item">
+                                <div class="module-name">Matrix Diagram</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <div class="module-status">Not Started</div>
+                            </div>
+                            <div class="module-progress-item">
+                                <div class="module-name">Bubble Diagram</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <div class="module-status">Not Started</div>
+                            </div>
+                            <div class="module-progress-item">
+                                <div class="module-name">Zoning</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 0%"></div>
+                                </div>
+                                <div class="module-status">Not Started</div>
+                            </div>
+                        </div>
+                        
+                        <div class="suggested-workflow">
+                            <h4>Suggested Workflow</h4>
+                            <p>For best results, complete these modules in the recommended sequence:</p>
+                            <ol class="workflow-steps">
+                                <li><a href="#" class="workflow-link" data-tab="vicinity">Vicinity Map</a> - Establish context</li>
+                                <li><a href="#" class="workflow-link" data-tab="site">Site Analysis</a> - Understand environmental factors</li>
+                                <li><a href="#" class="workflow-link" data-tab="matrix">Matrix Diagram</a> - Define spatial relationships</li>
+                                <li><a href="#" class="workflow-link" data-tab="bubble">Bubble Diagram</a> - Visualize relationships</li>
+                                <li><a href="#" class="workflow-link" data-tab="zoning">Zoning</a> - Establish privacy/access zones</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <div id="vicinity" class="tab-pane">
+                        <h3>Vicinity Map</h3>
+                        <p>Create a contextual map showing the site's surroundings and connections.</p>
+                        <div class="tool-interface">
+                            <div class="vicinity-controls">
+                                <button class="tool-btn"><i class="fas fa-map-marker-alt"></i> Place Marker</button>
+                                <button class="tool-btn"><i class="fas fa-road"></i> Draw Road</button>
+                                <button class="tool-btn"><i class="fas fa-tree"></i> Add Landmark</button>
+                                <button class="tool-btn"><i class="fas fa-compass"></i> Set North</button>
+                            </div>
+                            <div class="map-canvas">
+                                <div class="map-placeholder">Map Canvas Area</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="site" class="tab-pane">
+                        <h3>Site Analysis</h3>
+                        <p>Analyze sun path and wind path conditions.</p>
+                        <div class="tool-interface">
+                            <div class="site-controls">
+                                <button class="tool-btn"><i class="fas fa-sun"></i> Sun Path</button>
+                                <button class="tool-btn"><i class="fas fa-wind"></i> Wind Direction</button>
+                                <button class="tool-btn"><i class="fas fa-mountain"></i> Topography</button>
+                                <button class="tool-btn"><i class="fas fa-tree"></i> Vegetation</button>
+                            </div>
+                            <div class="site-canvas">
+                                <div class="site-placeholder">Site Analysis Canvas</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="matrix" class="tab-pane">
+                        <h3>Matrix Diagram</h3>
+                        <p>Create relationship matrices for spatial programming requirements.</p>
+                        <div class="tool-interface">
+                            <div class="matrix-controls">
+                                <button class="tool-btn"><i class="fas fa-plus-square"></i> Add Space</button>
+                                <button class="tool-btn"><i class="fas fa-link"></i> Define Relationship</button>
+                                <button class="tool-btn"><i class="fas fa-sliders-h"></i> Adjust Priority</button>
+                                <button class="tool-btn"><i class="fas fa-table"></i> Generate Matrix</button>
+                            </div>
+                            <div class="matrix-canvas">
+                                <div class="matrix-placeholder">Matrix Diagram Area</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="bubble" class="tab-pane">
+                        <h3>Bubble Diagram</h3>
+                        <p>Visualize spatial relationships and circulation patterns.</p>
+                        <div class="tool-interface">
+                            <div class="bubble-controls">
+                                <button class="tool-btn"><i class="fas fa-circle"></i> Add Space</button>
+                                <button class="tool-btn"><i class="fas fa-arrows-alt"></i> Move/Resize</button>
+                                <button class="tool-btn"><i class="fas fa-link"></i> Connect Spaces</button>
+                                <button class="tool-btn"><i class="fas fa-paint-brush"></i> Color Code</button>
+                            </div>
+                            <div class="bubble-canvas">
+                                <div class="bubble-placeholder">Bubble Diagram Canvas</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="zoning" class="tab-pane">
+                        <h3>Zoning</h3>
+                        <p>Apply color coding to distinguish room privacy levels.</p>
+                        <div class="tool-interface">
+                            <div class="zoning-controls">
+                                <button class="tool-btn"><i class="fas fa-draw-polygon"></i> Draw Zone</button>
+                                <button class="tool-btn"><i class="fas fa-paint-brush"></i> Set Privacy Level</button>
+                                <button class="tool-btn"><i class="fas fa-tags"></i> Label Zone</button>
+                                <button class="tool-btn"><i class="fas fa-layer-group"></i> Manage Layers</button>
+                            </div>
+                            <div class="zoning-canvas">
+                                <div class="zoning-placeholder">Zoning Canvas</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="action-btn export-btn"><i class="fas fa-file-export"></i> Export</button>
+                <button class="action-btn save-btn"><i class="fas fa-save"></i> Save Progress</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="starred.js"></script>
+</body>
+</html>

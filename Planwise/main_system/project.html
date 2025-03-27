@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanWise - Projects</title>
+    <link rel="stylesheet" href="css/project.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        
+        <!-- Main Content -->
+        <div class="main-content">
+    
+            <!-- Page Tabs -->
+            <div class="page-tabs">
+                <div class="page-tab">All Files</div>
+                <div class="page-tab active">Shared With Me</div>
+                <div class="page-tab">My Shares</div>
+            </div>
+            
+            <!-- Shared Projects Overview -->
+            <div class="section-header">
+                <h2>Projects</h2>
+                <div class="view-controls">
+                    <div class="dropdown">
+                        <span>Last modified</span>
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="dropdown-content">
+                            <div class="dropdown-item" data-value="modified">Last modified</div>
+                            <div class="dropdown-item" data-value="created">Date shared</div>
+                            <div class="dropdown-item" data-value="name">Name</div>
+                            <div class="dropdown-item" data-value="members">Team size</div>
+                        </div>
+                    </div>
+                    <button class="view-btn active">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button class="view-btn">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Activity Filters -->
+            <div class="activity-filters">
+                <div class="activity-filter active">All</div>
+                <div class="activity-filter">This week</div>
+                <div class="activity-filter">This month</div>
+                <div class="activity-filter">Owned by me</div>
+            </div>
+            
+            <!-- Shared Projects Grid -->
+            <div class="shared-projects-grid" id="shared-projects-container">
+                <!-- Projects will be dynamically added here by JavaScript -->
+            </div>
+            
+            <!-- Empty State -->
+            <div class="empty-state" id="empty-state">
+                <div class="empty-illustration">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>No projects yet</h3>
+                <p>Projects will appear here. You can create a new project.</p>
+                <button class="new-btn">
+                    <i class="fas fa-plus"></i>
+                    <span>Create New Project</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Details Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Project Details</h3>
+                <button class="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="project-name">Project Name</label>
+                    <input type="text" id="project-name" placeholder="Enter project name">
+                </div>
+                <div class="form-group">
+                    <label for="project-description">Description</label>
+                    <textarea id="project-description" placeholder="Enter project description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Members</label>
+                    <div id="member-list" class="member-list">
+                        <!-- Member items will be added here dynamically -->
+                    </div>
+                    <div class="add-member-input">
+                        <input type="email" id="new-member-email" placeholder="Add by email">
+                        <button id="add-member-btn" class="add-btn">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="project-info">
+                    <div class="info-item">
+                        <span class="info-label">Created:</span>
+                        <span id="created-date" class="info-value"></span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Last modified:</span>
+                        <span id="modified-date" class="info-value"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="leave-project-btn" class="delete-btn">Leave Project</button>
+                <button id="save-project-btn" class="save-btn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="project.js"></script>
+</body>
+</html>
