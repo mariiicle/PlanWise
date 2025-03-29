@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanWise - Recent Projects</title>
+    <link rel="stylesheet" href="recent.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Left Sidebar -->
+        <div class="sidebar">
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-drafting-compass"></i>
+                </div>
+                <div class="logo-text">PlanWise</div>
+                <div class="plan-badge">Free</div>
+            </div>
+            
+            <div class="user-profile">
+                <div class="avatar">A</div>
+                <div class="user-info">
+                    <div class="user-name">My Projects</div>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+            
+            <button class="new-btn">
+                <i class="fas fa-plus"></i>
+                <span>New Project</span>
+            </button>
+            
+            <div class="nav-menu">
+                <div class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </div>
+                <div class="nav-item active">
+                    <i class="fas fa-clock"></i>
+                    <span>Recent</span>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-star"></i>
+                    <span>Starred</span>
+                </div>
+                <div class="nav-item projects">
+                    <i class="fas fa-building"></i>
+                    <span>Projects</span>
+                    <i class="fas fa-plus add-project"></i>
+                </div>
+                <div class="nav-item">
+                    <i class="fas fa-trash"></i>
+                    <span>Recycle Bin</span>
+                </div>
+            </div>
+            
+            <div class="upgrade-info">
+                <div class="plan-name">PlanWise Pro</div>
+                <div class="billing-info">Architect Edition</div>
+                <div class="discount-badge">Save 48%</div>
+                <button class="upgrade-btn">
+                    <i class="fas fa-crown"></i>
+                    <span>Upgrade</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Search and user controls -->
+            <div class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search projects...">
+                </div>
+                <div class="user-controls">
+                    <button class="icon-btn">
+                        <i class="fas fa-crown"></i>
+                        <span>Upgrade</span>
+                    </button>
+                    <button class="icon-btn">
+                        <i class="fas fa-history"></i>
+                    </button>
+                    <button class="icon-btn">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <div class="user-avatar">A</div>
+                </div>
+            </div>
+            
+            <!-- Recent Projects Section -->
+            <div class="recent-projects">
+                <div class="section-header">
+                    <h2>Recent Projects</h2>
+                    <div class="view-controls">
+                        <div class="dropdown">
+                            <span>Last modified</span>
+                            <i class="fas fa-chevron-down"></i>
+                            <div class="dropdown-content">
+                                <div class="dropdown-item" data-value="modified">Last modified</div>
+                                <div class="dropdown-item" data-value="created">Date created</div>
+                                <div class="dropdown-item" data-value="name">Name</div>
+                                <div class="dropdown-item" data-value="type">Type</div>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <span>All types</span>
+                            <i class="fas fa-chevron-down"></i>
+                            <div class="dropdown-content">
+                                <div class="dropdown-item" data-value="all">All types</div>
+                                <div class="dropdown-item" data-value="vicinity">All-in-One</div>
+                                <div class="dropdown-item" data-value="vicinity">Vicinity Map</div>
+                                <div class="dropdown-item" data-value="site">Site Analysis</div>
+                                <div class="dropdown-item" data-value="matrix">Matrix Diagram</div>
+                                <div class="dropdown-item" data-value="bubble">Bubble Diagram</div>
+                                <div class="dropdown-item" data-value="zoning">Zoning</div>
+                            </div>
+                        </div>
+                        <button class="view-btn active">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="activity-header">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-period">
+                        <button class="period-btn active" data-period="week">This week</button>
+                        <button class="period-btn" data-period="month">This month</button>
+                        <button class="period-btn" data-period="year">This year</button>
+                    </div>
+                </div>
+                
+                <div class="projects-list" id="projectsList">
+                    <!-- Projects will be loaded dynamically via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Project Modal -->
+    <div class="modal" id="newProjectModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Project</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="projectName">Project Name:</label>
+                    <input type="text" id="projectName">
+                </div>
+                <div class="form-group">
+                    <label for="projectType">Project Type:</label>
+                    <select id="projectType">
+                        <option value="residential">Residential</option>
+                        <option value="commercial">Commercial</option>
+                        <option value="mixed-use">Custom</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="projectDescription">Description (optional):</label>
+                    <textarea id="projectDescription" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Project Modules:</label>
+                    <div class="modules-checklist">
+                        <div class="module-check">
+                            <input type="checkbox" id="vicinity-map">
+                            <label for="vicinity-map">Vicinity Map</label>
+                        </div>
+                        <div class="module-check">
+                            <input type="checkbox" id="site-analysis">
+                            <label for="site-analysis">Site Analysis</label>
+                        </div>
+                        <div class="module-check">
+                            <input type="checkbox" id="matrix-diagram">
+                            <label for="matrix-diagram">Matrix Diagram</label>
+                        </div>
+                        <div class="module-check">
+                            <input type="checkbox" id="bubble-diagram">
+                            <label for="bubble-diagram">Bubble Diagram</label>
+                        </div>
+                        <div class="module-check">
+                            <input type="checkbox" id="zoning">
+                            <label for="zoning">Zoning</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="delete-btn" class="delete-btn">Delete</button>
+                <button id="save-btn" class="save-btn">Create Project</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Details Modal -->
+    <div class="modal" id="projectDetailsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Project Details</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="file-name">Project Name:</label>
+                    <input type="text" id="file-name">
+                </div>
+                <div class="form-group">
+                    <label for="project-type">Project Type:</label>
+                    <select id="project-type">
+                        <option value="residential">Residential</option>
+                        <option value="commercial">Commercial</option>
+                        <option value="mixed-use">Custom</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="file-content">Description:</label>
+                    <textarea id="file-content" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Created: <span id="created-date"></span></label>
+                </div>
+                <div class="form-group">
+                    <label>Modified: <span id="modified-date"></span></label>
+                </div>
+                <div class="form-group">
+                    <label>Completed Modules:</label>
+                    <div class="modules-checklist">
+                        <div class="module-check">
+                            <input type="checkbox" id="vicinity-map">
+                            <label for="vicinity-map">Vicinity Map</label>
+                        </div>
+                        <div class="module-check">
+                            <input type="checkbox" id="site-analysis">
+                            <label for="site-analysis">Site Analysis</label>
+                        </div>
+                        <div class="module-check">
+                            <input type="checkbox" id="matrix-diagram">
+                            <label for="matrix-diagram">Matrix Diagram</label>
+                        </div>
+                        <div class="module-check">
+                            <input type="checkbox" id="bubble-diagram">
+                            <label for="bubble-diagram">Bubble Diagram</label>
+                        </div>
+                        <div class="module-check">
+                            <input type="checkbox" id="zoning">
+                            <label for="zoning">Zoning</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="starred-checkbox">
+                        <span class="checkmark"></span>
+                        Star project
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="delete-btn" class="delete-btn">Delete</button>
+                <button id="save-btn" class="save-btn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="recent.js"></script>
+</body>
+</html>

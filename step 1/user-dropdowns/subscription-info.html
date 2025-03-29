@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanWise - Subscription</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4f6df5;
+            --primary-light: #7986fd;
+            --primary-dark: #3252e8;
+            --secondary-color: #5ac564;
+            --text-dark: #2c3e50;
+            --text-gray: #788195;
+            --background-color: #f0f4f8;
+            --card-bg: #ffffff;
+            --border-color: #e6ebf1;
+            --border-radius: 16px;
+            --shadow: 0 10px 30px rgba(79, 109, 245, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .page-wrapper {
+            display: flex;
+            width: 100%;
+            max-width: 1400px;
+            background-color: transparent;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(79, 109, 245, 0.15);
+            position: relative;
+        }
+
+        .page-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(79, 109, 245, 0.05) 0%, transparent 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .sidebar {
+            width: 320px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            padding: 40px 20px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sidebar::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .user-avatar i {
+            font-size: 24px;
+            color: white;
+        }
+
+        .sidebar-nav {
+            flex-grow: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .sidebar-nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            color: rgba(255,255,255,0.7);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .sidebar-nav-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 0;
+            height: 100%;
+            background-color: rgba(255,255,255,0.1);
+            transition: width 0.3s ease;
+        }
+
+        .sidebar-nav-item:hover::before {
+            width: 100%;
+        }
+
+        .sidebar-nav-item.active {
+            background-color: rgba(255,255,255,0.2);
+            color: white;
+        }
+
+        .sidebar-nav-item i {
+            margin-right: 12px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 40px;
+            background-color: var(--card-bg);
+            position: relative;
+        }
+
+        .content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(79, 109, 245, 0.02) 0%, transparent 30%);
+            pointer-events: none;
+        }
+
+        .content-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        /* Rest of the previous CSS remains the same */
+
+        @media (max-width: 900px) {
+            .page-wrapper {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                flex-direction: row;
+                align-items: center;
+                padding: 20px;
+            }
+
+            .sidebar::after {
+                display: none;
+            }
+
+            .sidebar-header {
+                margin-bottom: 0;
+                margin-right: 30px;
+            }
+
+            .sidebar-nav {
+                display: flex;
+                flex-grow: 1;
+            }
+
+            .sidebar-nav-item {
+                margin-bottom: 0;
+                margin-right: 15px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div>
+                    <h3>arki_marga</h3>
+                    <small>Student User</small>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="sidebar-nav-item">
+                    <i class="fas fa-cog"></i>
+                    Account Settings
+                </div>
+                <div class="sidebar-nav-item active">
+                    <i class="fas fa-credit-card"></i>
+                    Subscription
+                </div>
+                <div class="sidebar-nav-item">
+                    <i class="fas fa-bell"></i>
+                    Notifications
+                </div>
+                <div class="sidebar-nav-item">
+                    <i class="fas fa-lock"></i>
+                    Security
+                </div>
+            </nav>
+        </div>
+        <div class="content">
+            <div class="content-inner">
+                <div class="content-header">
+                    <h1>Subscription Overview</h1>
+                    <small>Last updated: March 28, 2024</small>
+                </div>
+
+                <div class="current-plan">
+                    <div class="plan-details">
+                        <h2 class="plan-name">PlanWise Student Plan</h2>
+                        <p class="plan-duration">Active until September 15, 2024</p>
+                    </div>
+                    <button class="upgrade-btn">Upgrade Plan</button>
+                </div>
+
+                <div class="subscription-details">
+                    <div class="detail-card">
+                        <h3 class="detail-title">Subscription Details</h3>
+                        <div class="detail-item">
+                            <span class="detail-label">Current Plan</span>
+                            <span class="detail-value">Student Educational License</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Associated University</span>
+                            <span class="detail-value">Design & Architecture School</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">License Expiration</span>
+                            <span class="detail-value">September 15, 2024</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-card">
+                        <h3 class="detail-title">Billing Information</h3>
+                        <div class="detail-item">
+                            <span class="detail-label">Billing Cycle</span>
+                            <span class="detail-value">Annual</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Next Billing Date</span>
+                            <span class="detail-value">September 1, 2024</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Payment Method</span>
+                            <span class="detail-value">University Sponsored</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
