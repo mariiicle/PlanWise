@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanWise - My Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4f6df5;
+            --primary-light: #7986fd;
+            --primary-dark: #3252e8;
+            --text-dark: #2c3e50;
+            --text-gray: #788195;
+            --main-content-bg: #f7f9fc;
+            --border-color: #e6ebf1;
+            --border-radius: 14px;
+            --box-shadow: 0 10px 30px rgba(79, 109, 245, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4eaf5 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            background-color: white;
+            color: var(--primary-color);
+            border: none;
+            border-radius: 12px;
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--box-shadow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            z-index: 100;
+        }
+
+        .back-btn:hover {
+            background-color: var(--primary-light);
+            color: white;
+            transform: translateX(-3px) translateY(-3px);
+            box-shadow: 0 15px 30px rgba(79, 109, 245, 0.25);
+        }
+
+        .profile-header {
+            width: 300px;
+            background: white;
+            box-shadow: var(--box-shadow);
+            padding: 80px 20px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            margin-bottom: 25px;
+            box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-avatar::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 50%);
+            top: 0;
+            left: 0;
+        }
+
+        .profile-name {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .profile-email {
+            color: var(--text-gray);
+            font-size: 16px;
+            background-color: rgba(79, 109, 245, 0.05);
+            padding: 6px 16px;
+            border-radius: 30px;
+            text-align: center;
+            max-width: 100%;
+            word-break: break-all;
+        }
+
+        .profile-header::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+            border-radius: 2px;
+            margin-top: 25px;
+        }
+
+        .edit-btn {
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+            color: white;
+            border: none;
+            padding: 16px 30px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(79, 109, 245, 0.3);
+            position: relative;
+            overflow: hidden;
+            margin-top: 40px;
+            display: inline-block;
+        }
+
+        .edit-btn:hover {
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary-color));
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(79, 109, 245, 0.4);
+        }
+
+        .edit-btn::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 200px;
+            background-color: rgba(255,255,255,0.2);
+            transform: rotate(45deg);
+            top: -50px;
+            left: -100px;
+            transition: all 0.7s ease;
+        }
+
+        .edit-btn:hover::after {
+            left: 120%;
+        }
+
+        .profile-details {
+            flex: 1;
+            padding: 80px 40px 40px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .section-title {
+            font-size: 22px;
+            color: var(--primary-dark);
+            margin-bottom: 30px;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-light);
+            border-radius: 1.5px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .detail-row:hover {
+            background-color: rgba(79, 109, 245, 0.03);
+            transform: translateX(5px);
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+        }
+
+        .detail-label i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .detail-value {
+            color: var(--text-gray);
+            font-weight: 500;
+            background-color: rgba(79, 109, 245, 0.05);
+            padding: 6px 14px;
+            border-radius: 8px;
+        }
+
+        .empty-value {
+            font-style: italic;
+        }
+
+        .profile-content {
+            flex: 1;
+        }
+
+        .button-container {
+            margin-top: auto;
+            text-align: center;
+            padding-top: 40px;
+        }
+
+        @media (max-width: 900px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .profile-header {
+                width: 100%;
+                padding: 80px 20px 30px;
+            }
+            
+            .profile-details {
+                padding: 40px 20px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .profile-name {
+                font-size: 24px;
+            }
+            
+            .profile-avatar {
+                width: 120px;
+                height: 120px;
+                font-size: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="dashboard.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    
+    <div class="profile-header">
+        <div class="profile-avatar">CM</div>
+        <div class="profile-name">Carla Margarit</div>
+        <div class="profile-email"><i class="fas fa-envelope-open-text"></i> margarit.carla@ncst.edu</div>
+    </div>
+
+    <div class="profile-details">
+        <div class="profile-content">
+            <h2 class="section-title">Personal Information</h2>
+            <div class="detail-row">
+                <span class="detail-label"><i class="fas fa-user"></i> Full Name</span>
+                <span class="detail-value">Carla Margarit</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label"><i class="fas fa-envelope"></i> Student Email</span>
+                <span class="detail-value">margarit.carla@ncst.edu</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label"><i class="fas fa-university"></i> University</span>
+                <span class="detail-value empty-value">National College of Science and Technology</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label"><i class="fas fa-graduation-cap"></i> Major</span>
+                <span class="detail-value empty-value">Architecture</span>
+            </div>
+        </div>
+        
+        <div class="button-container">
+            <a href="#" class="edit-btn"><i class="fas fa-pen"></i> Edit Profile</a>
+        </div>
+    </div>
+</body>
+</html>

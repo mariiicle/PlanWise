@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanWise - Subscription</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4f6df5;
+            --primary-light: #7986fd;
+            --primary-dark: #3252e8;
+            --secondary-color: #5ac564;
+            --text-dark: #2c3e50;
+            --text-gray: #788195;
+            --background-color: #f0f4f8;
+            --card-bg: #ffffff;
+            --border-color: #e6ebf1;
+            --border-radius: 16px;
+            --shadow: 0 10px 30px rgba(79, 109, 245, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        .header {
+            background-color: var(--card-bg);
+            padding: 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .plan-banner {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-banner::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 200%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+        }
+
+        .current-plan {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .plan-name {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        .plan-duration {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .upgrade-btn {
+            background-color: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .upgrade-btn:hover {
+            background-color: rgba(255,255,255,0.3);
+        }
+
+        .details-section {
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .subscription-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .detail-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .detail-title {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            position: relative;
+        }
+
+        .detail-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .detail-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+        }
+
+        .detail-value {
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .subscription-details {
+                grid-template-columns: 1fr;
+            }
+
+            .current-plan {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .upgrade-btn {
+                margin-top: 20px;
+            }
+
+            .content-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .content-header small {
+                margin-top: 8px;
+            }
+
+            .header, .plan-banner, .details-section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="content-header">
+            <h1>Subscription Overview</h1>
+            <small>Last updated: March 28, 2024</small>
+        </div>
+    </header>
+
+    <section class="plan-banner">
+        <div class="current-plan">
+            <div class="plan-details">
+                <h2 class="plan-name">PlanWise Student Plan</h2>
+                <p class="plan-duration"></p>
+            </div>
+            <button class="upgrade-btn">Upgrade Plan</button>
+        </div>
+    </section>
+
+    <section class="details-section">
+        <div class="subscription-details">
+            <div class="detail-card">
+                <h3 class="detail-title">Subscription Details</h3>
+                <div class="detail-item">
+                    <span class="detail-label">Current Plan</span>
+                    <span class="detail-value">Free Mode</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">License Expiration</span>
+                    <span class="detail-value">-</span>
+                </div>
+            </div>
+
+            <div class="detail-card">
+                <h3 class="detail-title">Billing Information</h3>
+                <div class="detail-item">
+                    <span class="detail-label">Billing Cycle</span>
+                    <span class="detail-value">Annual</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Next Billing Date</span>
+                    <span class="detail-value">-</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
