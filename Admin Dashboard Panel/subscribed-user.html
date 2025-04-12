@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="subscribed-user.css">
+     
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>PlanWise - Subscribed Users</title> 
+</head>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="images/logo.png" alt="">
+            </div>
+
+            <span class="logo_name">PLANWISE</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="dashboard.html">
+                    <i class="uil uil-estate"></i>
+                    <span class="link-name">Dashboard</span>
+                </a></li>
+                <li><a href="project-made.html">
+                    <i class="uil uil-folder-open"></i>
+                    <span class="link-name">Projects Made</span>
+                </a></li>
+                <li><a href="registered-user.html">
+                    <i class="uil uil-users-alt"></i>
+                    <span class="link-name">Registered Users</span>
+                </a></li>
+                <li class="active"><a href="#">
+                    <i class="uil uil-user-check"></i>
+                    <span class="link-name">Subscribed Users</span>
+                </a></li>
+                <li><a href="total-sales.html">
+                    <i class="uil uil-money-bill"></i>
+                    <span class="link-name">Total Sales</span>
+                </a></li>
+                <li><a href="price-change.html">
+                    <i class="uil uil-pricetag-alt"></i>
+                    <span class="link-name">Price Change</span>
+                </a></li>
+                <li><a href="add-admin.html">
+                    <i class="uil uil-user-plus"></i>
+                    <span class="link-name">Add new Admin</span>
+                </a></li>
+            </ul>
+            
+            <ul class="logout-mode">
+                
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                    <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                  <span class="switch"></span>
+                </div>
+            </li>
+                <li><a href="#">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Logout</span>
+                </a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search subscribers...">
+            </div>
+            
+            <img src="images/profile.jpg" alt="">
+        </div>
+
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-user-check"></i>
+                    <span class="text">Subscription Overview</span>
+                </div>
+
+                <div class="boxes">
+                    <div class="box box1">
+                        <i class="uil uil-user-check"></i>
+                        <span class="text">Total Paid Subscribers</span>
+                        <span class="number">-</span>
+                    </div>
+                    <div class="box box2">
+                        <i class="uil uil-chart"></i>
+                        <span class="text">Monthly Subscription Revenue</span>
+                        <span class="number">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <div class="title">
+                    <i class="uil uil-clipboard-notes"></i>
+                    <span class="text">Subscription Details</span>
+                </div>
+
+                <div class="activity-data">
+                    <div class="data names">
+                        <span class="data-title">Name</span>
+                        <!---data goes here-->
+                    </div>
+                    <div class="data email">
+                        <span class="data-title">Email</span>
+                        <!---data goes here-->
+                    </div>
+                    <div class="data plan">
+                        <span class="data-title">Plan</span>
+                        <!---data goes here-->
+                    </div>
+                    <div class="data amount">
+                        <!---data goes here-->
+                    </div>
+                    <div class="data expiry">
+                        <!---data goes here-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

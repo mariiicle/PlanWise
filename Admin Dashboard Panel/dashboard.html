@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="dashboard.css">
+     
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <title>PlanWise Dashboard</title> 
+</head>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="images/logo.png" alt="">
+            </div>
+
+            <span class="logo_name">PLANWISE</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li class="active"><a href="#">
+                    <i class="uil uil-estate"></i>
+                    <span class="link-name">Dashboard</span>
+                </a></li>
+                <li><a href="project-made.html">
+                    <i class="uil uil-folder-open"></i>
+                    <span class="link-name">Projects Made</span>
+                </a></li>
+                <li><a href="registered-user.html">
+                    <i class="uil uil-users-alt"></i>
+                    <span class="link-name">Registered Users</span>
+                </a></li>
+                <li><a href="subscribed-user.html">
+                    <i class="uil uil-user-check"></i>
+                    <span class="link-name">Subscribed Users</span>
+                </a></li>
+                <li><a href="total-sales.html">
+                    <i class="uil uil-money-bill"></i>
+                    <span class="link-name">Total Sales</span>
+                </a></li>
+                <li><a href="price-change.html">
+                    <i class="uil uil-pricetag-alt"></i>
+                    <span class="link-name">Price Change</span>
+                </a></li>
+                <li><a href="add-admin.html">
+                    <i class="uil uil-user-plus"></i>
+                    <span class="link-name">Add new Admin</span>
+                </a></li>
+            </ul>
+            
+            <ul class="logout-mode">
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                    <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                  <span class="switch"></span>
+                </div>
+            </li>
+                <li><a href="#">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Logout</span>
+                </a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search projects...">
+            </div>
+            
+            <img src="images/profile.jpg" alt="">
+        </div>
+
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-tachometer-fast-alt"></i>
+                    <span class="text">Dashboard Overview</span>
+                </div>
+
+                <div class="boxes">
+                    <div class="box box1">
+                        <i class="uil uil-folder-open"></i>
+                        <span class="text">Projects Made</span>
+                        <span class="number">3,784</span>
+                    </div>
+                    <div class="box box2">
+                        <i class="uil uil-users-alt"></i>
+                        <span class="text">Registered Users</span>
+                        <span class="number">15,892</span>
+                    </div>
+                    <div class="box box3">
+                        <i class="uil uil-user-check"></i>
+                        <span class="text">Subscribed Users</span>
+                        <span class="number">9,427</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity">
+                <div class="title">
+                    <i class="uil uil-chart-line"></i>
+                    <span class="text">Sales Overview</span>
+                </div>
+
+                <div class="activity-data">
+                    <div class="data names">
+                        <span class="data-title">Subscription Plan</span>
+                        <span class="data-list">Basic Monthly</span>
+                        <span class="data-list">Pro Monthly</span>
+                        <span class="data-list">Enterprise Monthly</span>
+                        <span class="data-list">Basic Annual</span>
+                        <span class="data-list">Pro Annual</span>
+                        <span class="data-list">Enterprise Annual</span>
+                        <span class="data-list">Custom Solutions</span>
+                    </div>
+                    <div class="data email">
+                        <span class="data-title">Current Price</span>
+                        <span class="data-list">$9.99</span>
+                        <span class="data-list">$19.99</span>
+                        <span class="data-list">$49.99</span>
+                        <span class="data-list">$99.99</span>
+                        <span class="data-list">$199.99</span>
+                        <span class="data-list">$499.99</span>
+                        <span class="data-list">Varies</span>
+                    </div>
+                    <div class="data joined">
+                        <span class="data-title">Previous Price</span>
+                        <span class="data-list">$7.99</span>
+                        <span class="data-list">$17.99</span>
+                        <span class="data-list">$44.99</span>
+                        <span class="data-list">$89.99</span>
+                        <span class="data-list">$189.99</span>
+                        <span class="data-list">$449.99</span>
+                        <span class="data-list">-</span>
+                    </div>
+                    <div class="data type">
+                        <span class="data-title">Active Subscribers</span>
+                        <span class="data-list">3,245</span>
+                        <span class="data-list">4,120</span>
+                        <span class="data-list">782</span>
+                        <span class="data-list">567</span>
+                        <span class="data-list">498</span>
+                        <span class="data-list">165</span>
+                        <span class="data-list">50</span>
+                    </div>
+                    <div class="data status">
+                        <span class="data-title">Monthly Revenue</span>
+                        <span class="data-list">$32,417.55</span>
+                        <span class="data-list">$82,358.80</span>
+                        <span class="data-list">$39,092.18</span>
+                        <span class="data-list">$4,724.53</span>
+                        <span class="data-list">$8,312.92</span>
+                        <span class="data-list">$6,874.86</span>
+                        <span class="data-list">$23,500.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanWise - Architectural Planning Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'space-grotesk': ['Space Grotesk', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: white;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #818cf8 0%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .feature-icon {
+            background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+            padding: 15px;
+            border-radius: 16px;
+        }
+        .hover-card {
+            transition: all 0.4s ease;
+        }
+        .hover-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 50px rgba(129, 140, 248, 0.3);
+        }
+        .swiper-button-prev, 
+        .swiper-button-next {
+            color: #c084fc !important;
+        }
+        .swiper-pagination-bullet-active {
+            background: #c084fc !important;
+        }
+    </style>
+</head>
+<body class="dark">
+    <nav class="bg-purple-900 text-white p-5 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-3xl font-bold gradient-text flex items-center">
+                <i class="fas fa-drafting-compass mr-3"></i>
+                PlanWise
+            </div>
+            <div class="space-x-6">
+                <a href="#about" class="text-lg hover:text-purple-200 transition-colors">About</a>
+                <a href="#how-it-works" class="text-lg hover:text-purple-200 transition-colors">How It Works</a>
+                <a href="#features" class="text-lg hover:text-purple-200 transition-colors">Features</a>
+                <a href="#tutorial" class="text-lg hover:text-purple-200 transition-colors">Tutorial</a>
+                <a href="#pricing" class="text-lg hover:text-purple-200 transition-colors">Pricing</a>
+                <a href="#team" class="text-lg hover:text-purple-200 transition-colors">Our Team</a>
+                <a href="#contact" class="text-lg hover:text-purple-200 transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-6 py-12">
+        <section id="about" class="mb-16">
+            <div class="md:max-w-4xl mx-auto">
+                <h1 class="text-5xl font-bold gradient-text mb-8 text-center">Revolutionize Your Architectural Design</h1>
+                <div class="glass-card p-8 rounded-xl">
+                    <p class="text-xl mb-6">PlanWise is an innovative architectural planning tool specifically designed for architecture students and professionals. Founded in 2025, our platform is dedicated to simplifying the early stages of architectural design through intuitive digital tools.</p>
+                    <p class="text-lg mb-6 text-purple-200">Our comprehensive suite of digital design tools enables architects to streamline workflows, from initial concept sketches to detailed spatial planning, helping you transform creative ideas into professional layouts faster than ever before.</p>
+                    <p class="text-lg mb-6 text-purple-200">With PlanWise, you'll experience architectural design that's intuitive and visually stunning—all while cutting design time by up to 40% compared to traditional methods.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="mb-16">
+            <h2 class="text-4xl font-semibold gradient-text mb-10 text-center">How PlanWise Works</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-xl hover-card text-center">
+                    <i class="fas fa-laptop text-6xl feature-icon mb-4 text-white"></i>
+                    <h3 class="text-2xl font-bold mb-4">Digital Design Tools</h3>
+                    <p class="text-lg">Access a comprehensive suite of digital tools to streamline your architectural planning process.</p>
+                </div>
+                <div class="glass-card p-8 rounded-xl hover-card text-center">
+                    <i class="fas fa-project-diagram text-6xl feature-icon mb-4 text-white"></i>
+                    <h3 class="text-2xl font-bold mb-4">Intuitive Interface</h3>
+                    <p class="text-lg">Easy-to-use platform that guides you through each stage of architectural design.</p>
+                </div>
+                <div class="glass-card p-8 rounded-xl hover-card text-center">
+                    <i class="fas fa-cloud text-6xl feature-icon mb-4 text-white"></i>
+                    <h3 class="text-2xl font-bold mb-4">Cloud-Based Collaboration</h3>
+                    <p class="text-lg">Store, share, and collaborate on your architectural projects seamlessly.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="mb-16">
+            <h2 class="text-4xl font-semibold gradient-text mb-10 text-center">Key Features</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-xl hover-card text-center">
+                    <i class="fas fa-map-marked-alt text-6xl feature-icon mb-4 text-white"></i>
+                    <h3 class="text-2xl font-bold mb-4">Vicinity Map</h3>
+                    <p class="text-lg">Create detailed vicinity maps to understand site context and surroundings.</p>
+                </div>
+                <div class="glass-card p-8 rounded-xl hover-card text-center">
+                    <i class="fas fa-chart-area text-6xl feature-icon mb-4 text-white"></i>
+                    <h3 class="text-2xl font-bold mb-4">Site Analysis</h3>
+                    <p class="text-lg">Comprehensive tools for in-depth site analysis and environmental assessment.</p>
+                </div>
+                <div class="glass-card p-8 rounded-xl hover-card text-center">
+                    <i class="fas fa-table text-6xl feature-icon mb-4 text-white"></i>
+                    <h3 class="text-2xl font-bold mb-4">Matrix Diagram</h3>
+                    <p class="text-lg">Create and manipulate matrix diagrams for complex spatial relationships.</p>
+                </div>
+                <div class="glass-card p-8 rounded-xl hover-card text-center">
+                    <i class="fas fa-shapes text-6xl feature-icon mb-4 text-white"></i>
+                    <h3 class="text-2xl font-bold mb-4">Bubble Diagram</h3>
+                    <p class="text-lg">Visualize spatial connections and design flow with interactive bubble diagrams.</p>
+                </div>
+                <div class="glass-card p-8 rounded-xl hover-card text-center">
+                    <i class="fas fa-layer-group text-6xl feature-icon mb-4 text-white"></i>
+                    <h3 class="text-2xl font-bold mb-4">Zoning</h3>
+                    <p class="text-lg">Advanced zoning tools to optimize space allocation and design efficiency.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="tutorial" class="mb-16">
+            <h2 class="text-4xl font-semibold gradient-text mb-10 text-center">Quick Start Guide</h2>
+            <div class="glass-card p-8 rounded-xl">
+                <div class="swiper tutorial-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide text-center p-6">
+                            <i class="fas fa-user-plus text-6xl feature-icon mb-4 text-white"></i>
+                            <h3 class="text-2xl font-bold mb-4">Create Account</h3>
+                            <p class="text-lg mb-6">Launch your design journey by creating a free account in less than hour. Our streamlined registration process requires minimal information while offering extensive customization options. Once registered, you'll have immediate access to your personalized workspace where you can set preferences for units, grid layouts, and interface appearance to match your workflow.</p>
+                            <p class="text-lg">Many users find it helpful to complete their profile with professional information and specialty areas, as this enables better collaboration and networking within the PlanWise community. Don't forget to explore the accessibility settings if you have specific visibility or interface needs.</p>
+                        </div>
+                        <div class="swiper-slide text-center p-6">
+                            <i class="fas fa-map-signs text-6xl feature-icon mb-4 text-white"></i>
+                            <h3 class="text-2xl font-bold mb-4">Customize Vicinity</h3>
+                            <p class="text-lg mb-6">The vicinity map is your starting point for spatial context. Begin by customizing own map. Our precision boundary tools allow you to define exact project areas by using simulated objects. You can then layer contextual elements like nearby buildings, vegetation, and infrastructure to understand your site's relationship to its surroundings.</p>
+                            <p class="text-lg">The map interface supports multiple annotation types—pins, areas, paths, and text—each with customizable appearances. As you progress, you can toggle different analysis layers to visualize factors like traffic flow, noise levels, and visibility from key vantage points.</p>
+                        </div>
+                        <div class="swiper-slide text-center p-6">
+                            <i class="fas fa-chart-area text-6xl feature-icon mb-4 text-white"></i>
+                            <h3 class="text-2xl font-bold mb-4">Site Analysis</h3>
+                            <p class="text-lg mb-6">Our site analysis tools transform raw data into actionable design insights. The solar path simulator shows sun movement across all seasons, helping you optimize building orientation and window placement. The integrated wind pattern analyzer uses computational fluid dynamics to model airflow around existing structures, essential for natural ventilation strategies.</p>
+                        </div>
+                        <div class="swiper-slide text-center p-6">
+                            <i class="fas fa-table text-6xl feature-icon mb-4 text-white"></i>
+                            <h3 class="text-2xl font-bold mb-4">Matrix Diagram</h3>
+                            <p class="text-lg mb-6">The matrix diagram tool revolutionizes how you visualize relationships between program spaces. Starting with a project-specific template (residential, commercial, educational, etc.), you'll define spaces and begin mapping their connections. Our relationship strength indicators use a five-point scale from "essential adjacency" to "separation required," with color-coding that makes patterns immediately apparent.</p>
+                            <p class="text-lg">The intelligent system can suggest common relationships based on your project type, saving time while allowing complete customization. As you build your matrix, you'll see it dynamically update with statistical insights about circulation efficiency and functional clustering. This data-driven approach helps justify design decisions and creates a solid foundation for your bubble diagram development.</p>
+                        </div>
+                        <div class="swiper-slide text-center p-6">
+                            <i class="fas fa-shapes text-6xl feature-icon mb-4 text-white"></i>
+                            <h3 class="text-2xl font-bold mb-4">Bubble Diagram</h3>
+                            <p class="text-lg mb-6">Transform abstract concepts into spatial arrangements with our intuitive bubble diagram tool. Simply drag space "bubbles" onto the canvas where their size automatically reflects your program areas. Connections between spaces appear dynamically based on your matrix relationships, with line thickness indicating connection importance. Color-coding distinguishes between public, private, service, and circulation spaces at a glance.</p>
+                            <p class="text-lg">The multi-level layering system lets you organize spaces by floor or zone while maintaining visual connections between levels. As you arrange bubbles, real-time feedback highlights optimal and problematic adjacencies. When satisfied with your layout, export to vector formats for further development in design software or direct inclusion in presentations.</p>
+                        </div>
+                        <div class="swiper-slide text-center p-6">
+                            <i class="fas fa-layer-group text-6xl feature-icon mb-4 text-white"></i>
+                            <h3 class="text-2xl font-bold mb-4">Zoning</h3>
+                            <p class="text-lg mb-6">The zoning module helps you organize spaces into functional groups with sophisticated parameters. Begin by defining zone types (public/private, wet/dry, loud/quiet) and assigning priority levels to each criterion. The system's spatial optimization algorithm suggests efficient arrangements while respecting your design intent. Our conflict detection technology immediately identifies when zones violate established relationships.</p>
+                            <p class="text-lg">The efficiency analysis tools measure circulation distances, spatial overlap, and program compatibility, quantifying the effectiveness of your layout decisions. Save successful zoning schemes as templates for future projects, building a personal library of proven spatial strategies. This systematic approach ensures your designs are both creative and functionally sound.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="pricing" class="mb-16">
+            <h2 class="text-4xl font-semibold gradient-text mb-10 text-center">Pricing Plans</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-xl text-center hover-card">
+                    <h3 class="text-2xl font-bold mb-6">Student</h3>
+                    <p class="text-5xl font-bold gradient-text mb-6">Free</p>
+                    <ul class="mb-8 space-y-4 text-lg">
+                        <li>Basic Features</li>
+                        <li>Limited Projects</li>
+                        <br>
+                        
+                    </ul>
+                    <button class="w-full bg-purple-600 text-white text-xl px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+                        Get Started
+                    </button>
+                </div>
+                <div class="glass-card p-8 rounded-xl text-center hover-card">
+                    <h3 class="text-2xl font-bold mb-6">Student Monthly</h3>
+                    <p class="text-5xl font-bold gradient-text mb-6">₱199/mo</p>
+                    <ul class="mb-8 space-y-4 text-lg">
+                        <li>All Student Features</li>
+                        <li>Unlimited Projects</li>
+                        <li>Advanced Tools</li>
+                    </ul>
+                    <button class="w-full bg-purple-600 text-white text-xl px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+                        Choose Plan
+                    </button>
+                </div>
+                <div class="glass-card p-8 rounded-xl text-center hover-card bg-opacity-20 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-purple-800 bg-opacity-30 backdrop-blur-sm"></div>
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold mb-6">MORE</h3>
+                        <p class="text-5xl font-bold gradient-text mb-6">?</p>
+                        <ul class="mb-8 space-y-4 text-lg">
+                            <li>● ● ● ● ●</li>
+                            <li>● ● ● ●</li>
+                            <li>● ● ● ● ●</li>
+                        </ul>
+                        <button class="w-full bg-purple-600 text-white text-xl px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+                            View More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="team" class="mb-16">
+            <h2 class="text-4xl font-semibold gradient-text mb-10 text-center">Meet Our Team</h2>
+            <div class="glass-card p-8 rounded-xl">
+                <div class="swiper team-swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="glass-card p-6 rounded-xl text-center hover-card h-full flex flex-col">
+                                <div class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 bg-purple-400">
+                                    <img src="images/carl.png" alt="Developer" class="w-full h-full object-cover">
+                                </div>
+                                <h3 class="text-xl font-bold mb-2">Carl Nataño</h3>
+                                <p class="text-purple-300 mb-4">Lead Developer</p>
+                                <p class="text-sm flex-grow">A former Architecture student who brings unique cross-disciplinary insight to the team. Carl leverages his architectural background to bridge the gap between technical development and spatial design concepts, helping architecture students visualize their planning process with intuitive software solutions.</p>
+                                <div class="flex justify-center mt-4 space-x-3">
+                                    <a href="#" class="text-purple-300 hover:text-white"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#" class="text-purple-300 hover:text-white"><i class="fab fa-github"></i></a>
+                                    <a href="#" class="text-purple-300 hover:text-white"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="glass-card p-6 rounded-xl text-center hover-card h-full flex flex-col">
+                                <div class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 bg-purple-400">
+                                    <img src="images/mari.jpg" alt="Designer" class="w-full h-full object-cover">
+                                </div>
+                                <h3 class="text-xl font-bold mb-2">Marithes Miraflor</h3>
+                                <p class="text-purple-300 mb-4">UX/UI Designer</p>
+                                <p class="text-sm flex-grow">A talented frontend developer specializing in creating intuitive interfaces for complex design tools. Marithes combines strong visual design principles with technical implementation skills to ensure the platform is both aesthetically pleasing and highly functional for users.</p>
+                                <div class="flex justify-center mt-4 space-x-3">
+                                    <a href="#" class="text-purple-300 hover:text-white"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#" class="text-purple-300 hover:text-white"><i class="fab fa-dribbble"></i></a>
+                                    <a href="#" class="text-purple-300 hover:text-white"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="glass-card p-6 rounded-xl text-center hover-card h-full flex flex-col">
+                                <div class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 bg-purple-400">
+                                    <img src="images/igan.jpeg" alt="Architect" class="w-full h-full object-cover">
+                                </div>
+                                <h3 class="text-xl font-bold mb-2">Igan Tajanlangit</h3>
+                                <p class="text-purple-300 mb-4">Project Manager</p>
+                                <p class="text-sm flex-grow">As project manager, Igan coordinates team efforts and ensures timely delivery of project milestones. With strong organizational skills and technical knowledge, Igan keeps development on track while maintaining communication between team members and stakeholders.</p>
+                                <div class="flex justify-center mt-4 space-x-3">
+                                    <a href="#" class="text-purple-300 hover:text-white"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#" class="text-purple-300 hover:text-white"><i class="fas fa-book"></i></a>
+                                    <a href="#" class="text-purple-300 hover:text-white"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="glass-card p-6 rounded-xl text-center hover-card h-full flex flex-col">
+                                <div class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 bg-purple-400">
+                                    <img src="images/masicap.jpg" alt="Support" class="w-full h-full object-cover">
+                                </div>
+                                <h3 class="text-xl font-bold mb-2">John Angelo Masicap</h3>
+                                <p class="text-purple-300 mb-4">eme lang</p>
+                                <p class="text-sm flex-grow">-</p>
+                                <div class="flex justify-center mt-4 space-x-3">
+                                    <a href="#" class="text-purple-300 hover:text-white"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#" class="text-purple-300 hover:text-white"><i class="fab fa-youtube"></i></a>
+                                    <a href="#" class="text-purple-300 hover:text-white"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="glass-card p-6 rounded-xl text-center hover-card h-full flex flex-col">
+                                <div class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4 bg-purple-400">
+                                    <img src="images/geirwin.jpg" alt="Support" class="w-full h-full object-cover">
+                                </div>
+                                <h3 class="text-xl font-bold mb-2">Geirwin Sumaculub</h3>
+                                <p class="text-purple-300 mb-4">Project Researcher</p>
+                                <p class="text-sm flex-grow">Dedicated to exploring emerging technologies and methodologies in architectural visualization. Geirwin conducts research to identify best practices and innovative approaches that can be incorporated into the platform, ensuring it remains at the cutting edge of visualization technology.</p>
+                                <div class="flex justify-center mt-4 space-x-3">
+                                    <a href="#" class="text-purple-300 hover:text-white"><i class="fab fa-linkedin"></i></a>
+                                    <a href="#" class="text-purple-300 hover:text-white"><i class="fab fa-youtube"></i></a>
+                                    <a href="#" class="text-purple-300 hover:text-white"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+        </section>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Initialize Tutorial Swiper
+                new Swiper('.tutorial-swiper', {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    breakpoints: {
+                        640: {
+                            slidesPerView: 1,
+                            spaceBetween: 20,
+                        },
+                        1024: {
+                            slidesPerView: 1,
+                            spaceBetween: 30,
+                        }
+                    }
+                });
+                
+                // Initialize Team Swiper
+                new Swiper('.team-swiper', {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    breakpoints: {
+                        640: {
+                            slidesPerView: 2,
+                            spaceBetween: 20,
+                        },
+                        1024: {
+                            slidesPerView: 3,
+                            spaceBetween: 30,
+                        }
+                    }
+                });
+            });
+        </script>
+    
+
+        <section id="faq" class="mb-16">
+            <h2 class="text-4xl font-semibold gradient-text mb-10 text-center">FAQ with Our Community</h2>
+            <div class="glass-card p-8 rounded-xl">
+                <div class="mb-8 border-b border-purple-700 pb-6">
+                    <h3 class="text-2xl font-bold mb-4 text-white">Is PlanWise really beginner-friendly?</h3>
+                    <div class="flex items-center mb-4">
+                        <img src="images/user1.jpg" alt="Community Member" class="rounded-full mr-4 w-12 h-12">
+                        <div>
+                            <p class="text-lg text-purple-200">Sarah M., Architecture Student</p>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-lg text-purple-200">"As a total beginner, I was worried PlanWise would be complicated. But their interface is super intuitive! The step-by-step tutorials guided me through my first project seamlessly."</p>
+                </div>
+                <div class="mb-8 border-b border-purple-700 pb-6">
+                    <h3 class="text-2xl font-bold mb-4 text-white">How good are the collaboration features?</h3>
+                    <div class="flex items-center mb-4">
+                        <img src="images/user2.jpg" alt="Community Member" class="rounded-full mr-4 w-12 h-12">
+                        <div>
+                            <p class="text-lg text-purple-200">Michael K., Architecture Student</p>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-lg text-purple-200">"Game-changer for team projects! We can share designs, leave comments, and collaborate in real-time. The cloud-based system means no more endless email chains with design files."</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Is the free plan actually useful?</h3>
+                    <div class="flex items-center mb-4">
+                        <img src="images/user3.jpg" alt="Community Member" class="rounded-full mr-4 w-12 h-12">
+                        <div>
+                            <p class="text-lg text-purple-200">Jenna T., Architecture Graduate</p>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-lg text-purple-200">"The free plan is surprisingly robust for student projects. I completed my entire semester design project using just the free tools. For larger projects or professional work, the paid plans are definitely worth it though."</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="mb-16">
+            <h2 class="text-4xl font-semibold gradient-text mb-10 text-center">Get In Touch</h2>
+            <div class="glass-card p-8 rounded-xl">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Contact Information</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-purple-400 text-xl w-8"></i>
+                                <p class="text-lg">123 Design District, Creative City</p>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope text-purple-400 text-xl w-8"></i>
+                                <p class="text-lg">hello@planwise.design</p>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone text-purple-400 text-xl w-8"></i>
+                                <p class="text-lg">+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <h4 class="text-xl font-bold mb-4">Follow Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="text-purple-400 hover:text-white text-2xl"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="text-purple-400 hover:text-white text-2xl"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="text-purple-400 hover:text-white text-2xl"><i class="fab fa-linkedin"></i></a>
+                                <a href="#" class="text-purple-400 hover:text-white text-2xl"><i class="fab fa-facebook"></i></a>
+                                <a href="#" class="text-purple-400 hover:text-white text-2xl"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Send Us a Message</h3>
+                        <form class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-lg mb-2">Name</label>
+                                <input type="text" id="name" class="w-full p-3 rounded-lg bg-purple-900 bg-opacity-50 border border-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 text-white">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-lg mb-2">Email</label>
+                                <input type="email" id="email" class="w-full p-3 rounded-lg bg-purple-900 bg-opacity-50 border border-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 text-white">
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-lg mb-2">Subject</label>
+                                <input type="text" id="subject" class="w-full p-3 rounded-lg bg-purple-900 bg-opacity-50 border border-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 text-white">
+                            </div>
+                            <div>
+                                <label for="message" class="block text-lg mb-2">Message</label>
+                                <textarea id="message" rows="5" class="w-full p-3 rounded-lg bg-purple-900 bg-opacity-50 border border-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 text-white"></textarea>
+                            </div>
+                            <button type="submit" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:from-purple-700 hover:to-indigo-700 transition-all">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="newsletter" class="mb-16">
+            <div class="glass-card p-8 rounded-xl">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold mb-4">Subscribe to Our Newsletter</h2>
+                    <p class="text-lg mb-6 max-w-2xl mx-auto">Stay updated with the latest features, tutorials, and exclusive offers from PlanWise. Join our community of architects and designers.</p>
+                    <form class="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
+                        <input type="email" placeholder="Your email address" class="flex-grow p-3 rounded-lg bg-purple-900 bg-opacity-50 border border-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500 text-white">
+                        <button type="submit" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:from-purple-700 hover:to-indigo-700 transition-all whitespace-nowrap">Subscribe Now</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-purple-900 bg-opacity-30 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-2xl font-bold gradient-text mb-4">PlanWise</h3>
+                    <p class="text-lg text-purple-200 mb-4">Revolutionizing architectural planning with intuitive digital tools for students and professionals alike.</p>
+                    <p class="text-purple-300">© 2025 PlanWise. All rights reserved.</p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-purple-300 hover:text-white">About</a></li>
+                        <li><a href="#features" class="text-purple-300 hover:text-white">Features</a></li>
+                        <li><a href="#tutorial" class="text-purple-300 hover:text-white">Tutorial</a></li>
+                        <li><a href="#pricing" class="text-purple-300 hover:text-white">Pricing</a></li>
+                        <li><a href="#contact" class="text-purple-300 hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold text-white mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-purple-300 hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="text-purple-300 hover:text-white">Video Tutorials</a></li>
+                        <li><a href="#" class="text-purple-300 hover:text-white">Community Forum</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-bold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-purple-300 hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" class="text-purple-300 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="text-purple-300 hover:text-white">Cookie Policy</a></li>
+                        <li><a href="#" class="text-purple-300 hover:text-white">Admin Portal</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Additional functionality can be added here
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add mobile menu functionality if needed
+            const navLinks = document.querySelector('.space-x-6');
+            const mobileMenuBtn = document.createElement('button');
+            mobileMenuBtn.innerHTML = '<i class="fas fa-bars text-2xl"></i>';
+            mobileMenuBtn.className = 'md:hidden text-white focus:outline-none';
+            
+            // Insert mobile menu button before the navigation links
+            navLinks.parentNode.insertBefore(mobileMenuBtn, navLinks);
+            
+            // Add responsive class to navigation links
+            navLinks.classList.add('hidden', 'md:block', 'w-full', 'md:w-auto');
+            
+            // Toggle mobile menu
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('hidden');
+            });
+        });
+    </script>
+</body>
+</html>

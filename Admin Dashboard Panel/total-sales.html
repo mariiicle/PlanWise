@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!----======== CSS ======== -->
+    <link rel="stylesheet" href="subscribed-user.css">
+    <link rel="stylesheet" href="total-sales.css">
+     
+    <!----===== Iconscout CSS ===== -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    
+    <!-- Chart.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+
+    <title>PlanWise - Total Sales</title> 
+</head>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="images/logo.png" alt="">
+            </div>
+
+            <span class="logo_name">PLANWISE</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="dashboard.html">
+                    <i class="uil uil-estate"></i>
+                    <span class="link-name">Dashboard</span>
+                </a></li>
+                <li><a href="project-made.html">
+                    <i class="uil uil-folder-open"></i>
+                    <span class="link-name">Projects Made</span>
+                </a></li>
+                <li><a href="registered-user.html">
+                    <i class="uil uil-users-alt"></i>
+                    <span class="link-name">Registered Users</span>
+                </a></li>
+                <li><a href="subscribed-user.html">
+                    <i class="uil uil-user-check"></i>
+                    <span class="link-name">Subscribed Users</span>
+                </a></li>
+                <li class="active"><a href="#">
+                    <i class="uil uil-money-bill"></i>
+                    <span class="link-name">Total Sales</span>
+                </a></li>
+                <li><a href="price-change.html">
+                    <i class="uil uil-pricetag-alt"></i>
+                    <span class="link-name">Price Change</span>
+                </a></li>
+                <li><a href="add-admin.html">
+                    <i class="uil uil-user-plus"></i>
+                    <span class="link-name">Add new Admin</span>
+                </a></li>
+            </ul>
+            
+            <ul class="logout-mode">
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                        <span class="link-name">Dark Mode</span>
+                    </a>
+
+                    <div class="mode-toggle">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+                <li><a href="#">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Logout</span>
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search sales...">
+            </div>
+            
+            <img src="images/profile.jpg" alt="">
+        </div>
+
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title">
+                    <i class="uil uil-money-bill"></i>
+                    <span class="text">Sales Overview</span>
+                </div>
+
+                <div class="time-selector">
+                    <button class="time-btn" data-period="weekly">Weekly</button>
+                    <button class="time-btn active" data-period="monthly">Monthly</button>
+                    <button class="time-btn" data-period="yearly">Yearly</button>
+                </div>
+
+                <div class="summary-boxes">
+                    <div class="summary-box">
+                        <h3>Total Revenue</h3>
+                        <div class="summary-value" id="total-revenue">$0.00</div>
+                        <div class="trend" id="revenue-trend-container">
+                            <i class="uil uil-minus"></i>
+                            <span id="revenue-trend">0%</span> compared to previous period
+                        </div>
+                    </div>
+                    <div class="summary-box">
+                        <h3>Average Transaction</h3>
+                        <div class="summary-value" id="avg-transaction">$0.00</div>
+                        <div class="trend" id="avg-trend-container">
+                            <i class="uil uil-minus"></i>
+                            <span id="avg-trend">0%</span> compared to previous period
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <div id="loading-container" class="loading">
+                        <i class="uil uil-sync"></i>
+                        <span>Loading data...</span>
+                    </div>
+                    <div id="no-data-container" class="no-data" style="display: none;">
+                        <i class="uil uil-chart-pie-alt"></i>
+                        <span>No sales data available</span>
+                    </div>
+                    <canvas id="salesChart" style="display: none;"></canvas>
+                </div>
+            </div>
+
+            <div class="activity">
+                <div class="title">
+                    <i class="uil uil-clipboard-notes"></i>
+                    <span class="text">Recent Sales</span>
+                </div>
+
+                <div class="activity-data" id="recent-sales-container">
+                    <div class="data names">
+                        <span class="data-title">Transaction ID</span>
+                        <!-- data goes here -->
+                    </div>
+                    <div class="data email">
+                        <span class="data-title">Customer</span>
+                        <!-- data goes here -->
+                    </div>
+                    <div class="data plan">
+                        <span class="data-title">Plan</span>
+                        <!-- data goes here -->
+                    </div>
+                    <div class="data amount">
+                        <span class="data-title">Amount</span>
+                        <!-- data goes here -->
+                    </div>
+                    <div class="data date">
+                        <span class="data-title">Date</span>
+                        <!-- data goes here -->
+                    </div>
+                </div>
+                <div id="recent-sales-loading" class="loading">
+                    <i class="uil uil-sync"></i>
+                    <span>Loading recent sales...</span>
+                </div>
+                <div id="no-recent-sales" class="no-data" style="display: none;">
+                    <i class="uil uil-receipt"></i>
+                    <span>No recent sales available</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="total-sales.js"></script>
+</body>
+</html>
