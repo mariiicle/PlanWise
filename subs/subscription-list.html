@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanWise - Subscription Options</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'space-grotesk': ['Space Grotesk', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: white;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #818cf8 0%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .feature-icon {
+            background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+            padding: 15px;
+            border-radius: 16px;
+        }
+        .hover-card {
+            transition: all 0.4s ease;
+        }
+        .hover-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 50px rgba(129, 140, 248, 0.3);
+        }
+    </style>
+</head>
+<body class="dark">
+    <!-- Navigation -->
+    <nav class="bg-purple-900 text-white p-5 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-3xl font-bold gradient-text flex items-center">
+                <i class="fas fa-drafting-compass mr-3"></i>
+                PlanWise
+            </div>
+            <div class="space-x-6">
+                <a href="index.html#about" class="text-lg hover:text-purple-200 transition-colors">About</a>
+                <a href="index.html#how-it-works" class="text-lg hover:text-purple-200 transition-colors">How It Works</a>
+                <a href="index.html#features" class="text-lg hover:text-purple-200 transition-colors">Features</a>
+                <a href="index.html#tutorial" class="text-lg hover:text-purple-200 transition-colors">Tutorial</a>
+                <a href="index.html#pricing" class="text-lg hover:text-purple-200 transition-colors">Pricing</a>
+                <a href="index.html#contact" class="text-lg hover:text-purple-200 transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <h1 class="text-5xl font-bold gradient-text mb-10 text-center">All Subscription Options</h1>
+        
+        <!-- Subscription Plans -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            <!-- Free Plan -->
+            <div class="glass-card p-8 rounded-xl text-center hover-card">
+                <h3 class="text-2xl font-bold mb-6">Student Free</h3>
+                <p class="text-5xl font-bold gradient-text mb-6">₱0</p>
+                <ul class="mb-8 space-y-4 text-lg">
+                    <li>Basic tools</li>
+                    <li>Limited exports</li>
+                    <li>5 projects maximum</li>
+                </ul>
+                <button class="w-full bg-purple-600 text-white text-xl px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+                    Get Started
+                </button>
+            </div>
+            
+            <!-- Student Monthly Plan -->
+            <div class="glass-card p-8 rounded-xl text-center hover-card">
+                <h3 class="text-2xl font-bold mb-6">Student Monthly</h3>
+                <p class="text-5xl font-bold gradient-text mb-6">₱199</p>
+                <ul class="mb-8 space-y-4 text-lg">
+                    <li>Full tools access</li>
+                    <li>Premium exports</li>
+                    <li>Unlimited projects</li>
+                </ul>
+                <button class="w-full bg-purple-600 text-white text-xl px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+                    Choose Plan
+                </button>
+            </div>
+            
+            <!-- Student Annual Plan -->
+            <div class="glass-card p-8 rounded-xl text-center hover-card">
+                <h3 class="text-2xl font-bold mb-6">Student Annual</h3>
+                <p class="text-5xl font-bold gradient-text mb-6">₱1,999</p>
+                <ul class="mb-8 space-y-4 text-lg">
+                    <li>All monthly features</li>
+                    <li>2 months free</li>
+                    <li>Early access to new features</li>
+                </ul>
+                <button class="w-full bg-purple-600 text-white text-xl px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+                    Choose Plan
+                </button>
+            </div>
+            
+            <!-- One-Time Plan -->
+            <div class="glass-card p-8 rounded-xl text-center hover-card">
+                <h3 class="text-2xl font-bold mb-6">One-Time (6 months)</h3>
+                <p class="text-5xl font-bold gradient-text mb-6">₱999</p>
+                <ul class="mb-8 space-y-4 text-lg">
+                    <li>Full features for 6 months</li>
+                    <li>No recurring fee</li>
+                    <li>Premium exports</li>
+
+                </ul>
+                <button class="w-full bg-purple-600 text-white text-xl px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+                    Choose Plan
+                </button>
+            </div>
+            
+            <!-- Lifetime Access -->
+            <div class="glass-card p-8 rounded-xl text-center hover-card">
+                <h3 class="text-2xl font-bold mb-6">Lifetime Access</h3>
+                <p class="text-5xl font-bold gradient-text mb-6">₱2,999</p>
+                <ul class="mb-8 space-y-4 text-lg">
+                    <li>One-time purchase</li>
+                    <li>Lifetime updates</li>
+                    <li>All premium features</li>
+                </ul>
+                <button class="w-full bg-purple-600 text-white text-xl px-6 py-3 rounded-lg hover:bg-purple-700 transition-colors">
+                    Choose Plan
+                </button>
+            </div>
+        </div>
+        
+        <!-- Comparison Table -->
+        <div class="mb-16">
+            <h2 class="text-4xl font-semibold gradient-text mb-10 text-center">Plan Comparison</h2>
+            <div class="glass-card p-8 rounded-xl overflow-x-auto">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="border-b border-purple-700">
+                            <th class="p-4 text-left">Plan</th>
+                            <th class="p-4 text-left">Price</th>
+                            <th class="p-4 text-left">Features</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-purple-700">
+                            <td class="p-4">Free</td>
+                            <td class="p-4">₱0</td>
+                            <td class="p-4">Basic tools, limited exports</td>
+                        </tr>
+                        <tr class="border-b border-purple-700">
+                            <td class="p-4">Student Monthly</td>
+                            <td class="p-4">₱199</td>
+                            <td class="p-4">Full tools, premium exports</td>
+                        </tr>
+                        <tr class="border-b border-purple-700">
+                            <td class="p-4">Student Annual</td>
+                            <td class="p-4">₱1,999</td>
+                            <td class="p-4">2 months free</td>
+                        </tr>
+                        <tr class="border-b border-purple-700">
+                            <td class="p-4">One-Time (6 months)</td>
+                            <td class="p-4">₱999</td>
+                            <td class="p-4">No recurring fee</td>
+                        </tr>
+                        <tr class="border-b border-purple-700">
+                            <td class="p-4">Lifetime Access</td>
+                            <td class="p-4">₱2,999</td>
+                            <td class="p-4">One-time purchase</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- FAQ Section -->
+        <div class="mb-16">
+            <h2 class="text-4xl font-semibold gradient-text mb-10 text-center">Subscription FAQ</h2>
+            <div class="glass-card p-8 rounded-xl">
+                <div class="mb-8 border-b border-purple-700 pb-6">
+                    <h3 class="text-2xl font-bold mb-4">Can I upgrade my plan later?</h3>
+                    <p class="text-lg">Yes, you can upgrade your plan at any time. The remaining value of your current subscription will be prorated and applied to your new plan.</p>
+                </div>
+                <div class="mb-8 border-b border-purple-700 pb-6">
+                    <h3 class="text-2xl font-bold mb-4">What happens when my subscription ends?</h3>
+                    <p class="text-lg">When your subscription ends, you'll be downgraded to the free plan. Your projects will remain accessible, but premium features will be disabled.</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">What payment methods do you accept?</h3>
+                    <p class="text-lg">We accept all major credit cards, PayPal, and bank transfers for enterprise plans.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-purple-900 text-white py-8">
+        <div class="container mx-auto text-center">
+            <p class="text-lg">&copy; 2025 PlanWise. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

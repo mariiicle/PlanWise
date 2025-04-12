@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanWise - Manage Subscription</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4f6df5;
+            --primary-light: #7986fd;
+            --primary-dark: #3252e8;
+            --secondary-color: #5ac564;
+            --text-dark: #2c3e50;
+            --text-gray: #788195;
+            --background-color: #f0f4f8;
+            --card-bg: #ffffff;
+            --border-color: #e6ebf1;
+            --border-radius: 16px;
+            --shadow: 0 10px 30px rgba(79, 109, 245, 0.1);
+            --pro-color: #8c43ff;
+            --pro-light: #a76aff;
+            --pro-dark: #7229e3;
+            --danger-color: #ff4757;
+            --warning-color: #ffa502;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+
+        .header {
+            background-color: var(--card-bg);
+            padding: 30px 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .back-button {
+            display: flex;
+            align-items: center;
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-button:hover {
+            color: var(--pro-color);
+        }
+
+        .back-button i {
+            margin-right: 8px;
+        }
+
+        .manage-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 40px;
+        }
+
+        .manage-grid {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 30px;
+        }
+
+        .manage-card {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--pro-color);
+            position: relative;
+        }
+
+        .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--pro-color);
+            border-radius: 3px;
+        }
+
+        .plan-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: rgba(140, 67, 255, 0.08);
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .plan-info h3 {
+            font-size: 1.25rem;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pro-badge {
+            background-color: var(--pro-color);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .plan-price {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+        }
+
+        .action-buttons {
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background-color: var(--pro-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--pro-dark);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--pro-color);
+            color: var(--pro-color);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(140, 67, 255, 0.08);
+        }
+
+        .btn-danger {
+            background-color: rgba(255, 71, 87, 0.1);
+            color: var(--danger-color);
+            border: 1px solid var(--danger-color);
+        }
+
+        .btn-danger:hover {
+            background-color: rgba(255, 71, 87, 0.2);
+        }
+
+        .btn i {
+            margin-right: 8px;
+        }
+
+        .section-divider {
+            margin: 30px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .option-card {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .option-card:hover {
+            border-color: var(--pro-color);
+            box-shadow: 0 5px 15px rgba(140, 67, 255, 0.1);
+        }
+
+        .option-card.selected {
+            border-color: var(--pro-color);
+            background-color: rgba(140, 67, 255, 0.05);
+        }
+
+        .option-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .option-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .option-badge {
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 12px;
+            margin-left: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-save {
+            background-color: #5ac56433;
+            color: var(--secondary-color);
+        }
+
+        .option-price {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--pro-color);
+        }
+
+        .option-description {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .payment-method {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .payment-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--background-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .payment-details {
+            flex: 1;
+        }
+
+        .payment-name {
+            font-weight: 600;
+        }
+
+        .payment-number {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .payment-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-link {
+            color: var(--pro-color);
+            font-size: 0.9rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .action-link:hover {
+            color: var(--pro-dark);
+            text-decoration: underline;
+        }
+
+        .cancel-section {
+            margin-top: 30px;
+        }
+
+        .cancel-header {
+            margin-bottom: 20px;
+        }
+
+        .cancel-info {
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            max-width: 500px;
+            width: 90%;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+        }
+
+        .modal-title {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+        }
+
+        .modal-body {
+            margin-bottom: 30px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+
+        .reason-option {
+            margin-bottom: 15px;
+        }
+
+        .reason-option label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .reason-option input {
+            margin-right: 10px;
+        }
+
+        .feedback-textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            resize: vertical;
+            min-height: 100px;
+            margin-top: 15px;
+            font-size: 0.95rem;
+        }
+
+        .feedback-textarea:focus {
+            outline: none;
+            border-color: var(--pro-color);
+        }
+
+        .warning-box {
+            background-color: rgba(255, 165, 2, 0.1);
+            border-left: 4px solid var(--warning-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .warning-box h4 {
+            color: var(--warning-color);
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .warning-box h4 i {
+            margin-right: 10px;
+        }
+
+        .warning-box p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .manage-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .manage-section {
+                padding: 0 20px;
+            }
+
+            .header {
+                padding: 20px;
+            }
+
+            .plan-details {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .plan-price {
+                margin-top: 10px;
+            }
+
+            .modal-content {
+                width: 95%;
+            }
+
+            .modal-footer {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="content-header">
+            <a href="#" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Subscription
+            </a>
+            <h1>Manage Subscription</h1>
+        </div>
+    </header>
+
+    <section class="manage-section">
+        <div class="manage-grid">
+            <div class="manage-card">
+                <h3 class="card-title">Subscription Options</h3>
+                
+                <div class="plan-details">
+                    <div class="plan-info">
+                        <h3>PlanWise <span class="pro-badge">PRO</span></h3>
+                        <p class="plan-price">₱199/month - Next billing on -</p>
+                    </div>
+                    <div class="plan-status">
+                        <span class="btn btn-outline">Active</span>
+                    </div>
+                </div>
+
+                <h4>Billing Cycle</h4>
+                <p class="option-description">Choose your preferred billing cycle for your PRO subscription.</p>
+                
+                <div class="option-card selected">
+                    <div class="option-header">
+                        <div class="option-title">
+                            Go back to Free
+                        </div>
+                        <div class="option-price">₱0</div>
+                    </div>
+                    <p class="option-description">Limited Access</p>
+                </div>
+
+                <div class="option-card">
+                    <div class="option-header">
+                        <div class="option-title">
+                            Student Monthly
+                        </div>
+                        <div class="option-price">₱199</div>
+                    </div>
+                    <p class="option-description">Billed monthly</p>
+                </div>
+
+                <div class="option-card">
+                    <div class="option-header">
+                        <div class="option-title">
+                            Student Annual <span class="option-badge badge-save">Save 10%</span>
+                        </div>
+                        <div class="option-price">₱1999</div>
+                    </div>
+                    <p class="option-description">Billed annually (₱166.58/month)</p>
+                </div>
+
+                <div class="option-card">
+                    <div class="option-header">
+                        <div class="option-title">
+                            One - Time (6-Months) <span class="option-badge badge-save">Save 20%</span>
+                        </div>
+                        <div class="option-price">₱999</div>
+                    </div>
+                    <p class="option-description">Billed annually (₱166.50/month)</p>
+                </div>
+
+                <div class="option-card">
+                    <div class="option-header">
+                        <div class="option-title">
+                            Lifetime Access <span class="option-badge badge-save">Save 20%</span>
+                        </div>
+                        <div class="option-price">₱2,999</div>
+                    </div>
+                    <p class="option-description">One-time payment (Original Price: ₱3,748.75)</p>
+                </div>
+                
+
+                <div class="section-divider"></div>
+
+                <h4>Payment Method</h4>
+                <div class="payment-method">
+                    <div class="payment-icon">
+                        <i class="fab fa-cc-visa"></i>
+                    </div>
+                    <div class="payment-details">
+                        <div class="payment-name">Visa</div>
+                        <div class="payment-number">•••• 4587</div>
+                    </div>
+                    <div class="payment-actions">
+                        <a href="#" class="action-link">Edit</a>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </div>
+
+                <div class="section-divider"></div>
+                
+                <div class="cancel-section">
+                    <div class="cancel-header">
+                        <h4>Cancel Subscription</h4>
+                    </div>
+                    <p class="cancel-info">
+                        You can cancel your subscription anytime. Your PRO features will remain active until the end of your current billing period.
+                    </p>
+                    <button id="open-cancel-modal" class="btn btn-danger">
+                        <i class="fas fa-times-circle"></i> Cancel Subscription
+                    </button>
+                </div>
+            </div>
+
+            <div class="manage-card">
+                <h3 class="card-title">Subscription Benefits</h3>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <div class="feature-details">
+                        <h4>Unlimited Projects</h4>
+                        <p>Create and manage as many projects as you need</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="feature-details">
+                        <h4>Advanced Tools</h4>
+                        <p>Gain deeper insights with PRO architectural tools</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud-download-alt"></i>
+                    </div>
+                    <div class="feature-details">
+                        <h4>Export Options</h4>
+                        <p>Export to PDF, PNG, and more formats</p>
+                    </div>
+                </div>
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Note</h4>
+                    <p>Cancelling your subscription will revert your account to the free plan after your current billing period ends. You'll lose access to PRO features and any projects exceeding the free plan limits.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cancel Subscription Modal -->
+    <div id="cancel-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Cancel Your Subscription</h3>
+            </div>
+            <div class="modal-body">
+                <p>We're sorry to see you go. Please help us improve by letting us know why you're cancelling:</p>
+                
+                <div class="reason-options">
+                    <div class="reason-option">
+                        <label>
+                            <input type="radio" name="cancel-reason" value="too-expensive">
+                            Too expensive
+                        </label>
+                    </div>
+                    <div class="reason-option">
+                        <label>
+                            <input type="radio" name="cancel-reason" value="not-using">
+                            Not using it enough
+                        </label>
+                    </div>
+                    <div class="reason-option">
+                        <label>
+                            <input type="radio" name="cancel-reason" value="missing-features">
+                            Missing features I need
+                        </label>
+                    </div>
+                    <div class="reason-option">
+                        <label>
+                            <input type="radio" name="cancel-reason" value="found-alternative">
+                            Found a better alternative
+                        </label>
+                    </div>
+                    <div class="reason-option">
+                        <label>
+                            <input type="radio" name="cancel-reason" value="other">
+                            Other reason
+                        </label>
+                    </div>
+                </div>
+                
+                <textarea class="feedback-textarea" placeholder="Tell us more about your experience and how we could improve..."></textarea>
+                
+                <div class="warning-box">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Important</h4>
+                    <p>Your subscription will remain active until the end of your current billing period. After that, your account will revert to the free plan.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="close-cancel-modal" class="btn btn-outline">Keep My Subscription</button>
+                <button class="btn btn-danger">Confirm Cancellation</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple JavaScript to handle modal functionality
+        document.getElementById("open-cancel-modal").addEventListener("click", function() {
+            document.getElementById("cancel-modal").style.display = "flex";
+        });
+        
+        document.getElementById("close-cancel-modal").addEventListener("click", function() {
+            document.getElementById("cancel-modal").style.display = "none";
+        });
+        
+        // Close modal when clicking outside of it
+        window.addEventListener("click", function(event) {
+            if (event.target == document.getElementById("cancel-modal")) {
+                document.getElementById("cancel-modal").style.display = "none";
+            }
+        });
+        
+        // Make option cards selectable
+        const optionCards = document.querySelectorAll(".option-card");
+        optionCards.forEach(card => {
+            card.addEventListener("click", function() {
+                optionCards.forEach(c => c.classList.remove("selected"));
+                this.classList.add("selected");
+            });
+        });
+    </script>
+</body>
+</html>

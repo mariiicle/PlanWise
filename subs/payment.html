@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanWise - Complete Your Purchase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'space-grotesk': ['Space Grotesk', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            color: white;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #818cf8 0%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .feature-icon {
+            background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+            padding: 15px;
+            border-radius: 16px;
+        }
+        .step-active {
+            background: linear-gradient(90deg, #818cf8 0%, #c084fc 100%);
+        }
+        .step-complete {
+            background: #10B981;
+        }
+        .step-inactive {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        input:focus {
+            border-color: #818cf8;
+            outline: none;
+        }
+    </style>
+</head>
+<body class="dark">
+    <!-- Navigation -->
+    <nav class="bg-purple-900 text-white p-5 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-3xl font-bold gradient-text flex items-center">
+                <i class="fas fa-drafting-compass mr-3"></i>
+                PlanWise
+            </div>
+            <div class="space-x-6">
+                <a href="index.html#about" class="text-lg hover:text-purple-200 transition-colors">About</a>
+                <a href="index.html#how-it-works" class="text-lg hover:text-purple-200 transition-colors">How It Works</a>
+                <a href="index.html#features" class="text-lg hover:text-purple-200 transition-colors">Features</a>
+                <a href="index.html#tutorial" class="text-lg hover:text-purple-200 transition-colors">Tutorial</a>
+                <a href="index.html#pricing" class="text-lg hover:text-purple-200 transition-colors">Pricing</a>
+                <a href="index.html#contact" class="text-lg hover:text-purple-200 transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-12">
+        <h1 class="text-4xl font-bold gradient-text mb-10 text-center">Complete Your Purchase</h1>
+        
+        <!-- Progress Steps -->
+        <div class="flex justify-center mb-12">
+            <div class="flex items-center w-full max-w-3xl">
+                <div class="flex flex-col items-center">
+                    <div id="step1" class="step-complete rounded-full h-12 w-12 flex items-center justify-center text-white font-bold text-xl">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <span class="mt-2">Plan Selection</span>
+                </div>
+                <div id="line1" class="flex-1 h-1 mx-4 step-active"></div>
+                <div class="flex flex-col items-center">
+                    <div id="step2" class="step-active rounded-full h-12 w-12 flex items-center justify-center text-white font-bold text-xl">2</div>
+                    <span class="mt-2">Payment Details</span>
+                </div>
+                <div id="line2" class="flex-1 h-1 mx-4 step-inactive"></div>
+                <div class="flex flex-col items-center">
+                    <div id="step3" class="step-inactive rounded-full h-12 w-12 flex items-center justify-center text-white font-bold text-xl">3</div>
+                    <span class="mt-2">Confirmation</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step 1: Plan Selection - Hidden initially -->
+        <div id="plan-selection" class="max-w-4xl mx-auto hidden">
+            <div class="glass-card p-8 rounded-xl">
+                <div class="grid md:grid-cols-5 gap-8">
+                    <!-- Left Side - Plan Summary -->
+                    <div class="md:col-span-2 glass-card p-6 rounded-xl">
+                        <h3 class="text-2xl font-bold mb-6 gradient-text">Your Plan</h3>
+                        
+                        <div class="mb-6 pb-6 border-b border-purple-700">
+                            <h4 class="text-xl mb-2">Student Monthly</h4>
+                            <p class="text-3xl font-bold gradient-text mb-2">₱199</p>
+                            <p class="text-gray-300">Billed monthly</p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-lg mb-3">What's included:</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-400 mr-2"></i>
+                                    Full tools access
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-400 mr-2"></i>
+                                    Premium exports
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-400 mr-2"></i>
+                                    Unlimited projects
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="pt-4 border-t border-purple-700">
+                            <a href="subscription-list.html" class="text-purple-300 hover:text-purple-100 transition-colors flex items-center">
+                                <i class="fas fa-arrow-left mr-2"></i>
+                                Change plan
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side - Plan Benefits -->
+                    <div class="md:col-span-3">
+                        <h3 class="text-2xl font-bold mb-6">Plan Benefits</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="feature-icon text-white mr-4">
+                                    <i class="fas fa-infinity"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl mb-1">Unlimited Projects</h4>
+                                    <p class="text-gray-300">Create and manage as many projects as you need without limits.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon text-white mr-4">
+                                    <i class="fas fa-file-export"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl mb-1">Premium Exports</h4>
+                                    <p class="text-gray-300">Export your projects in multiple formats including PDF, PNG, and SVG.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="feature-icon text-white mr-4">
+                                    <i class="fas fa-tools"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl mb-1">Advanced Tools</h4>
+                                    <p class="text-gray-300">Access all professional planning and design tools in our suite.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="pt-6">
+                                <button id="go-to-payment" class="bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-colors flex items-center">
+                                    <span>Continue to Payment</span>
+                                    <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step 2: Payment Details -->
+        <div id="payment-details" class="max-w-4xl mx-auto">
+            <div class="glass-card p-8 rounded-xl">
+                <div class="grid md:grid-cols-5 gap-8">
+                    <!-- Left Side - Plan Summary -->
+                    <div class="md:col-span-2 glass-card p-6 rounded-xl">
+                        <h3 class="text-2xl font-bold mb-6 gradient-text">Your Plan</h3>
+                        
+                        <div class="mb-6 pb-6 border-b border-purple-700">
+                            <h4 class="text-xl mb-2">Student Monthly</h4>
+                            <p class="text-3xl font-bold gradient-text mb-2">₱199</p>
+                            <p class="text-gray-300">Billed monthly</p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="text-lg mb-3">What's included:</h4>
+                            <ul class="space-y-2">
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-400 mr-2"></i>
+                                    Full tools access
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-400 mr-2"></i>
+                                    Premium exports
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="fas fa-check text-green-400 mr-2"></i>
+                                    Unlimited projects
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="pt-4 border-t border-purple-700">
+                            <a href="subscription-list.html" class="text-purple-300 hover:text-purple-100 transition-colors flex items-center">
+                                <i class="fas fa-arrow-left mr-2"></i>
+                                Change plan
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side - Payment Details -->
+                    <div class="md:col-span-3">
+                        <h3 class="text-2xl font-bold mb-6">Payment Details</h3>
+                        
+                        <form id="payment-form">
+                            <div class="mb-6">
+                                <label class="block mb-2">Email</label>
+                                <input type="email" class="w-full p-3 rounded-lg bg-transparent border border-purple-700 text-white" placeholder="your@email.com" required>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block mb-2">Card Information</label>
+                                <div class="relative">
+                                    <input type="text" class="w-full p-3 rounded-lg bg-transparent border border-purple-700 text-white mb-2" placeholder="Card Number" maxlength="19" required>
+                                    <i class="fas fa-credit-card absolute right-3 top-3.5 text-purple-300"></i>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <input type="text" class="p-3 rounded-lg bg-transparent border border-purple-700 text-white" placeholder="MM/YY" maxlength="5" required>
+                                    <input type="text" class="p-3 rounded-lg bg-transparent border border-purple-700 text-white" placeholder="CVC" maxlength="3" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block mb-2">Cardholder Name</label>
+                                <input type="text" class="w-full p-3 rounded-lg bg-transparent border border-purple-700 text-white" placeholder="Full Name" required>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block mb-2">Billing Address</label>
+                                <input type="text" class="w-full p-3 rounded-lg bg-transparent border border-purple-700 text-white mb-2" placeholder="Address" required>
+                                <div class="grid grid-cols-2 gap-4 mb-2">
+                                    <input type="text" class="p-3 rounded-lg bg-transparent border border-purple-700 text-white" placeholder="City" required>
+                                    <input type="text" class="p-3 rounded-lg bg-transparent border border-purple-700 text-white" placeholder="ZIP Code" required>
+                                </div>
+                                <select class="w-full p-3 rounded-lg bg-transparent border border-purple-700 text-white">
+                                    <option value="philippines">Philippines</option>
+                                    <option value="united_states">United States</option>
+                                    <option value="canada">Canada</option>
+                                    <option value="australia">Australia</option>
+                                    <option value="japan">Japan</option>
+                                </select>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center text-sm">
+                                    <i class="fas fa-lock mr-2 text-green-400"></i>
+                                    <span>Secure payment with SSL encryption</span>
+                                </div>
+                                <button id="submit-payment" type="button" class="bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-colors flex items-center">
+                                    <span>Pay ₱199</span>
+                                    <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Step 3: Confirmation - Hidden initially -->
+        <div id="confirmation" class="max-w-4xl mx-auto hidden">
+            <div class="glass-card p-8 rounded-xl text-center">
+                <div class="flex justify-center mb-6">
+                    <div class="bg-green-500 rounded-full h-20 w-20 flex items-center justify-center">
+                        <i class="fas fa-check text-white text-4xl"></i>
+                    </div>
+                </div>
+                
+                <h2 class="text-3xl font-bold gradient-text mb-4">Payment Successful!</h2>
+                <p class="text-xl mb-6">Thank you for subscribing to PlanWise</p>
+                
+                <div class="glass-card p-6 rounded-xl max-w-md mx-auto mb-8">
+                    <h3 class="text-xl mb-4 gradient-text">Order Summary</h3>
+                    
+                    <div class="flex justify-between mb-2">
+                        <span>Plan:</span>
+                        <span>Student Monthly</span>
+                    </div>
+                    
+                    <div class="flex justify-between mb-2">
+                        <span>Amount:</span>
+                        <span>₱199</span>
+                    </div>
+                    
+                    <div class="flex justify-between mb-2">
+                        <span>Payment Method:</span>
+                        <span>Credit Card (****1234)</span>
+                    </div>
+                    
+                    <div class="flex justify-between mb-2">
+                        <span>Next Billing Date:</span>
+                        <span>April 29, 2025</span>
+                    </div>
+                    
+                    <div class="flex justify-between pt-3 border-t border-purple-700 mt-3">
+                        <span class="font-bold">Order ID:</span>
+                        <span>PW-2025-03291847</span>
+                    </div>
+                </div>
+                
+                <p class="mb-6">A receipt has been sent to your email</p>
+                
+                <div class="flex justify-center space-x-4">
+                    <a href="dashboard.html" class="bg-purple-600 text-white px-8 py-3 rounded-lg hover:bg-purple-700 transition-colors flex items-center">
+                        <i class="fas fa-home mr-2"></i>
+                        <span>Go to Dashboard</span>
+                    </a>
+                    <a href="account.html" class="border border-purple-600 text-purple-300 px-8 py-3 rounded-lg hover:bg-purple-900 hover:text-white transition-colors flex items-center">
+                        <i class="fas fa-cog mr-2"></i>
+                        <span>Manage Subscription</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Testimonials -->
+        <div class="mt-16">
+            <h2 class="text-2xl font-semibold gradient-text mb-6 text-center">What Our Users Say</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-card p-6 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="mb-4">"PlanWise has completely transformed how I manage my projects. Worth every peso!"</p>
+                    <div class="text-purple-300 font-semibold">- Maria Santos, Architecture Student</div>
+                </div>
+                <div class="glass-card p-6 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="mb-4">"The premium features are incredible. I've saved countless hours on my thesis project."</p>
+                    <div class="text-purple-300 font-semibold">- Jun Reyes, Engineering Student</div>
+                </div>
+                <div class="glass-card p-6 rounded-xl">
+                    <div class="flex items-center mb-4">
+                        <div class="text-yellow-400 flex">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p class="mb-4">"I started with the monthly plan and upgraded to lifetime. Best investment for my education."</p>
+                    <div class="text-purple-300 font-semibold">- Ana Cruz, Design Student</div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-purple-900 text-white py-8 mt-16">
+        <div class="container mx-auto text-center">
+            <p class="text-lg">&copy; 2025 PlanWise. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Card number formatting
+        document.addEventListener('DOMContentLoaded', function() {
+            const cardNumberInput = document.querySelector('input[placeholder="Card Number"]');
+            
+            cardNumberInput.addEventListener('input', function(e) {
+                let value = e.target.value;
+                
+                // Remove all non-digits
+                value = value.replace(/\D/g, '');
+                
+                // Add space after every 4 digits
+                value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+                
+                // Update input value
+                e.target.value = value;
+            });
+            
+            // Format expiry date (MM/YY)
+            const expiryInput = document.querySelector('input[placeholder="MM/YY"]');
+            
+            expiryInput.addEventListener('input', function(e) {
+                let value = e.target.value;
+                
+                // Remove all non-digits
+                value = value.replace(/\D/g, '');
+                
+                // Add slash after first 2 digits
+                if (value.length > 2) {
+                    value = value.substring(0, 2) + '/' + value.substring(2);
+                }
+                
+                // Update input value
+                e.target.value = value;
+            });
+            
+            // Handle step navigation
+            const submitPaymentBtn = document.getElementById('submit-payment');
+            
+            submitPaymentBtn.addEventListener('click', function() {
+                // Here you would normally validate the form and process payment
+                // For demo purposes, we'll just move to the confirmation step
+                
+                // Update progress indicators
+                document.getElementById('step2').classList.remove('step-active');
+                document.getElementById('step2').classList.add('step-complete');
+                document.getElementById('step2').innerHTML = '<i class="fas fa-check"></i>';
+                
+                document.getElementById('line2').classList.remove('step-inactive');
+                document.getElementById('line2').classList.add('step-active');
+                
+                document.getElementById('step3').classList.remove('step-inactive');
+                document.getElementById('step3').classList.add('step-active');
+                
+                // Hide payment form and show confirmation
+                document.getElementById('payment-details').classList.add('hidden');
+                document.getElementById('confirmation').classList.remove('hidden');
+            });
+            
+            // For viewing different steps (dev testing)
+            // Uncomment to test different steps
+            /*
+            const viewStep1 = () => {
+                document.getElementById('plan-selection').classList.remove('hidden');
+                document.getElementById('payment-details').classList.add('hidden');
+                document.getElementById('confirmation').classList.add('hidden');
+                
+                // Reset progress indicators
+                document.getElementById('step1').classList.add('step-active');
+                document.getElementById('step1').classList.remove('step-complete');
+                document.getElementById('step1').innerHTML = '1';
+                
+                document.getElementById('line1').classList.add('step-inactive');
+                document.getElementById('line1').classList.remove('step-active');
+                
+                document.getElementById('step2').classList.add('step-inactive');
+                document.getElementById('step2').classList.remove('step-active');
+                document.getElementById('step2').classList.remove('step-complete');
+                document.getElementById('step2').innerHTML = '2';
+                
+                document.getElementById('line2').classList.add('step-inactive');
+                document.getElementById('line2').classList.remove('step-active');
+                
+                document.getElementById('step3').classList.add('step-inactive');
+                document.getElementById('step3').classList.remove('step-active');
+                document.getElementById('step3').classList.remove('step-complete');
+                document.getElementById('step3').innerHTML = '3';
+            };
+            
+            const viewStep2 = () => {
+                document.getElementById('plan-selection').classList.add('hidden');
+                document.getElementById('payment-details').classList.remove('hidden');
+                document.getElementById('confirmation').classList.add('hidden');
+                
+                // Update progress indicators
+                document.getElementById('step1').classList.remove('step-active');
+                document.getElementById('step1').classList.add('step-complete');
+                document.getElementById('step1').innerHTML = '<i class="fas fa-check"></i>';
+                
+                document.getElementById('line1').classList.remove('step-inactive');
+                document.getElementById('line1').classList.add('step-active');
+                
+                document.getElementById('step2').classList.remove('step-inactive');
+                document.getElementById('step2').classList.add('step-active');
+                
+                document.getElementById('line2').classList.add('step-inactive');
+                document.getElementById('line2').classList.remove('step-active');
+                
+                document.getElementById('step3').classList.add('step-inactive');
+                document.getElementById('step3').classList.remove('step-active');
+            };
+            
+            const viewStep3 = () => {
+                document.getElementById('plan-selection').classList.add('hidden');
+                document.getElementById('payment-details').classList.add('hidden');
+                document.getElementById('confirmation').classList.remove('hidden');
+                
+                // Update progress indicators
+                document.getElementById('step1').classList.remove('step-active');
+                document.getElementById('step1').classList.add('step-complete');
+                document.getElementById('step1').innerHTML = '<i class="fas fa-check"></i>';
+                
+                document.getElementById('line1').classList.remove('step-inactive');
+                document.getElementById('line1').classList.add('step-active');
+                
+                document.getElementById('step2').classList.remove('step-active');
+                document.getElementById('step2').classList.add('step-complete');
+                document.getElementById('step2').innerHTML = '<i class="fas fa-check"></i>';
+                
+                document.getElementById('line2').classList.remove('step-inactive');
+                document.getElementById('line2').classList.add('step-active');
+                
+                document.getElementById('step3').classList.remove('step-inactive');
+                document.getElementById('step3').classList.add('step-active');
+            };
+            */
+        });
+    </script>
+</body>
+</html>
