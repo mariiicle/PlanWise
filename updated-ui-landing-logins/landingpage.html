@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanWise - Smart Architectural Planning Tools</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="px-6 py-4">
+        <div class="container mx-auto">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <img src="images/logo.png" alt="PlanWise Logo" class="h-10 w-auto" />
+                    <span class="text-2xl font-bold text-white">PlanWise</span>
+                  </div>  
+                <div class="hidden md:flex items-center space-x-8">
+                    <!-- Overview dropdown -->
+                    <div class="nav-item" id="overview-nav">
+                        <span>Overview</span>
+                        <div class="dropdown" id="overview-dropdown">
+                            <a href="landing-next.html#features-nav" class="dropdown-item">About PlanWise</a>
+                            <a href="landing-next.html#how-it-works" class="dropdown-item">How It Works</a>
+                            <a href="landing-next.html#tutorial" class="dropdown-item">Tutorial</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Features dropdown -->
+                    <div class="nav-item" id="features-nav">
+                        <span>Features</span>
+                        <div class="dropdown" id="features-dropdown">
+                            <a href="#vicinity" class="dropdown-item">Vicinity Mapping</a>
+                            <a href="#site" class="dropdown-item">Site Analysis</a>
+                            <a href="#matrix" class="dropdown-item">Matrix Diagrams</a>
+                            <a href="#bubble" class="dropdown-item">Bubble Diagrams</a>
+                            <a href="#zoning" class="dropdown-item">Zoning & Regulations</a>
+                        </div>
+                    </div>
+                    
+                    <button class="purple-button">Log in</button>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button class="text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="container mx-auto px-6 py-16">
+        <div class="flex flex-col md:flex-row items-center">
+            <div class="w-full md:w-1/2 mb-10 md:mb-0 pr-0 md:pr-8">
+                <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
+                    Design Smarter,<br>Build Better.
+                </h1>
+                <p class="text-gray-200 text-lg md:text-xl mb-8 max-w-xl">
+                    PlanWise simplifies early design for architecture students and professionals with intuitive tools for site analysis, matrix diagrams, and bubble diagrams.
+                </p>
+                <button class="purple-button-large flex items-center">
+                    Try PlanWise for free
+                    <svg class="w-6 h-6 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="w-full md:w-1/2 flex justify-center md:justify-end">
+                <div class="hero-image-wrapper">
+                    <div class="hero-image-container">
+                        <img src="images/logo.png" alt="Architecture Design Tools" class="hero-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Features Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text leading-tight">The Ultimate Tool for Architectural Initial Planning</h2>
+                <p class="text-xl text-gray-200 max-w-3xl mx-auto">
+                    From site analysis to zoning, from matrix diagrams to bubble diagrams.
+                    <br>Your all-in-one tool for conceptualizing early architectural designs.
+                </p>
+            </div>
+    
+            <div class="grid md:grid-cols-2 gap-10 mb-16">
+                <div id="vicinity" class="glass-card hover-card">
+                    <h3 class="text-2xl font-bold mb-4 gradient-text">Vicinity Mapping</h3>
+                    <p class="text-gray-200 mb-6">
+                      Map and analyze the surrounding context including transportation, amenities, landmarks, and infrastructure. 
+                      Understand how your site connects to the broader urban fabric.
+                    </p>
+                    <div class="relative floating flex justify-center">
+                      <img src="images/vicinity.jpg" class="rounded-lg mx-auto max-w-full h-auto" alt="Vicinity Mapping">
+                    </div>
+                  </div>
+                  
+                  <div id="site" class="glass-card hover-card">
+                    <h3 class="text-2xl font-bold mb-4 gradient-text">Site Analysis</h3>
+                    <p class="text-gray-200 mb-6">
+                        Analyze environmental factors including sun path, wind direction, noise sources, and circulation patterns. 
+                        Generate comprehensive site analysis diagrams with customizable layers and export options.
+                    </p>
+                    <div class="relative floating flex justify-center">
+                        <img src="images/site.jpg" class="rounded-lg mx-auto max-w-full h-auto" alt="Site Analysis">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div id="matrix" class="glass-card hover-card">
+                    <h3 class="text-2xl font-bold mb-4 gradient-text">Matrix Diagram</h3>
+                    <p class="text-gray-200 mb-6">
+                        Create relationship matrices between different functional spaces to optimize connections and proximities. 
+                        Automated generation based on your input with customizable parameters.
+                    </p>
+                    <div class="relative floating flex justify-center">
+                        <img src="images/matrix.jpg" class="rounded-lg mx-auto max-w-full h-auto" alt="Matrix Diagram">
+                    </div>
+                </div>
+            
+                <div id="bubble" class="glass-card hover-card">
+                    <h3 class="text-2xl font-bold mb-4 gradient-text">Bubble Diagram</h3>
+                    <p class="text-gray-200 mb-6">
+                        Transform your matrix diagrams into spatial bubble diagrams showing relationships and approximate sizes. 
+                        Drag, resize, and adjust to explore different spatial organizations easily.
+                    </p>
+                    <div class="relative floating flex justify-center">
+                        <img src="images/bubble.jpg" class="rounded-lg mx-auto max-w-full h-auto" alt="Bubble Diagram">
+                    </div>
+                </div>
+                
+                <div id="zoning" class="glass-card hover-card">
+                    <h3 class="text-2xl font-bold mb-4 gradient-text">Zoning & Regulations</h3>
+                    <p class="text-gray-200 mb-6">
+                        Easily visualize zoning laws, height restrictions, and building coverage to ensure compliance. 
+                        Keep your designs within regulatory parameters from the start.
+                    </p>
+                    <div class="relative floating flex justify-center">
+                        <img src="images/zoning.jpg" class="rounded-lg mx-auto max-w-full h-auto" alt="Zoning & Regulations">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+            
+    <!-- Call to Action -->
+    <section class="py-16 bg-gradient-to-r">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to transform your architectural planning?</h2>
+            <p class="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
+                Join thousands of architecture students who are already using PlanWise
+                to streamline their planning process.
+            </p>
+            <button class="purple-button-large">
+                Start your journey with PlanWise today
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-6">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-4 items-center">
+                <div>
+                    <h3 class="text-xl font-bold gradient-text">PlanWise</h3>
+                    <p class="text-sm text-gray-200">
+                        Revolutionizing architectural planning with intuitive digital tools for students.
+                    </p>
+                    <p class="text-xs text-gray-300">© 2025 PlanWise. All rights reserved.</p>
+                </div>
+                <div class="flex flex-col md:items-end">
+                    <h4 class="text-lg font-bold text-white mb-2">Quick Links</h4>
+                    <ul class="flex text-gray-200 text-sm">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#tutorial">Tutorial</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#admin-portal">Admin Portal</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Simple JavaScript for dropdown functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            navItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    const dropdown = this.querySelector('.dropdown');
+                    if (dropdown) {
+                        dropdown.classList.add('show');
+                    }
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    const dropdown = this.querySelector('.dropdown');
+                    if (dropdown) {
+                        dropdown.classList.remove('show');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
